@@ -32,7 +32,9 @@ Voor onze beloningen hebben we verschillende tabellen aangezien we met meerde AI
 # Beschrijving objecten
 ### Auto
 ![Car image](md_images/carimage.png)
+
 ![Car settings](md_images/carSettings.png)
+
 ![Car box Collider](md_images/carBoxCollider.png)
 
 Aan de auto werd een ray perception sensor, Decision requester en het good car script toegevoegd.
