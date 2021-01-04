@@ -1,4 +1,15 @@
 # Oversteek simulator
+# Table of contents
+1. [Inleiding](#Inleiding)
+2. [Korte samenvatting](#Korte-samenvatting)
+3. [Installatie](#Installatie)
+4. [Verloop simulatie](#Verloop-simulatie)
+5. [Observaties, acties en beloningen](#Observaties-acties-en-beloningen)
+6. [Beschrijving objecten](#beschrijving-objecten)
+7. [Scripts](#Scripts)
+8. [Beschrijving gedragingen objecten](#beschrijving-gedragingen-objecten)
+9. [Verloop van de training](#verloop-van-de-training)
+10. [Resultaten training](#resultaten-training)
 
 ## Inleiding
 In dit document zal u een goede uitleg over het project krijgen en wat we hier allemaal in gedaan hebben en hoe alles in werking gegaan is. 
@@ -29,7 +40,7 @@ Voor onze beloningen hebben we verschillende tabellen aangezien we met meerde AI
 |Slechte auto   |-0.5                 |+1                   |-0.1            |-0.002               |-0.8                |
 |Player         |NVT                  |+1                   |NVT             |-0.001               |-1                  |
 
-# Beschrijving objecten
+## Beschrijving objecten
 ### Auto
 ![Car image](md_images/carimage.png)
 
@@ -45,14 +56,31 @@ De settings voor alle 2 de auto's zijn compleet hetzelfde enkel het aangevoegd s
 
 ### Player
 ![Player image](md_images/playerModelImage.png)
+
+![Player info](md_images/playerInfo.png)
+
+![Player info2](md_images/playerInfo2.png)
+
+![Player eyes](md_images/playerEyes.png)
+
+![Player eyes down](md_images/playerEyesDown.png)
+
+Bij de speler zien we dat er ray perception word toegevoegd in empty game objects om zo het peripheraal zicht na te bootsen.
+
+Alsook moet er op het player object zelf ook nog de box collider worden aangepast en de nodige scripts toegevoegd Bvb: `OVR Player controller`
+
 ### Pedestrian Crossing
 ![Pedestrian Crossing](md_images/stripeImage.png)
+
+![Pedestrian crossing info](md_images/stripeInfo.png)
+
 Hier zien we een streep van het zebrapad waar de speler over zal kunnen wandelen. Daarboven kan een box collider geobserveerd worden die bovenop de streep hangt zodat we kunnen controleren wanneer  er verschillende entities in contact komen met het zebrapad.
 
 ### Scene
 ![Scene image](md_images/sceneImage.png)
+
 In deze foto kunnen we zien dat er een basisscene opgesteld is waarop we een zebrapad, voetgangerspad en een weg kunnen observeren. We hebben bewust gekozen om de scene basic te houden om zo meer op de functionaliteit te kunnen letten waardoor we meer vooruitgang konden boeken.
-# Scripts
+## Scripts
 #### Car
 ```C#
 public abstract class Car : Agent
@@ -499,16 +527,32 @@ public class Player : Agent
 }
 ```
 
-# Beschrijving gedragingen objecten
+## Beschrijving gedragingen objecten
 ### Auto
 Bij het gedrag van de auto zien we dat de auto's vooruit zullen rijden om zo aan hun gedesigneerde eindzone te geraken. Indien ze een speler klaar zien staan aan het voetpad zullen de auto's moeten stoppen om zo de speler over te laten. 
 
 Echter hebben we er ook voor gezorgd dat we enkele auto's niet laten stoppen om zo het verkeer het beste te simuleren.
 Zo zal de speler kunnen leren omgaan met auto's die zoals in een echte verkeerssituatie niet zullen stoppen.
 
-# Verloop van de training
+## Verloop van de training
 Om de auto's op een goede manier te trainen hoe het verkeer in het echt zou lopen hebben we geopteerd om de speler ook een agent toe te kennnen tijdens de training. 
 Dit zal ervoor zorgen dat wanneer we de training starten de auto's zullen leren om te gaan met een onvoorspelbare speler. 
 
+Om de training te starten kan u in de projectmap een python of anaconda terminal opendoen en daarin zal u de volgende commands moeten invoeren. 
+
+Indien u anaconda gebruikt zal u eerst de omgeving moeten aanzetten. Dit kan u doen door het commando: 
+```
+conda activate <Naam ML agents environment>
+```
+Daarna kan u de training starten met het commando: 
+```
+mlagents-learn YAML --run-id <Naam>
+```
+Indien u de resultaten van de training wilt bekijken al dan niet live kan u in een nieuwe terminal dit commando uitvoeren: 
+```
+tensorboard --logdir results
+```
+
+
 In het volgende hoofdstuk zullen we meer uitbreiden over de resultaten die we hebben geobserveerd van onze training.
-# Resultaten training
+## Resultaten training
