@@ -37,11 +37,11 @@ Hier zullen de autos volledig door een getrainde AI worden bestuurd om zo echte 
 
 | Programma/tool/asset  | Versie         |  Naam                      |
 | --------------------- | -------------- | -------------------------- |
-| Unity                 | 2019.4.16f1    |                            |
-| Python                | 3.8.1 of hoger |                            |
-| ML Agents             | 1.0.5          |                            |
-| Tensorboard           | 2.3.1          |                            |
-| Oculus XR plugin      | 1.6.1          |                            |
+| Unity                 | 2019.4.16f1    | /                          |
+| Python                | 3.8.1 of hoger | /                          |
+| ML Agents             | 1.0.5          | /                          |
+| Tensorboard           | 2.3.1          | /                          |
+| Oculus XR plugin      | 1.6.1          | /                          |
 | Unity asset           | /              | Character Pack Free Sample |
 
 ![Unity asset character](md_images/characterpack.png)
