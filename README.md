@@ -25,6 +25,9 @@ In dit document zal u een korte uitleg krijgen over hoe het project werkt.
 - Unity V2019.4.16f1
 - ML Agents V1.0.5
 - Oculus XR plugin V1.6.1
+- Unity asset: Character Pack Free Sample
+
+![Unity asset character](md_images/characterpack.png)
 
 ## Verloop simulatie
 Wanneer de simulatie start zal de speler een random positie toegekend krijgen. 
