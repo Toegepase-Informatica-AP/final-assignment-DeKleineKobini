@@ -19,8 +19,8 @@
 | Anne Toussaint         | s106511  |
 | Kirishalini Kanagarasa | s108145  |
 | Yalda Fazlehaq         | s108051  |
-| Kobe De Peuter         | s  |
-| Mathias | s  |
+| Kobe De Peuter         | s107571  |
+| Matthias Verschorren   | s103579  |
 
 ## Inleiding
 Voor het vak VR-Experience kregen wij de opdracht om een spel te bedenken waarbij zowel Virtual Reality als ML-Agents een meerwaarde zal zijn.
@@ -395,36 +395,6 @@ public class SpawnPoint : MonoBehaviour
         car.transform.SetParent(environment.cars.transform, false);
         
         Invoke(nameof(Spawn), randomTime);
-    }
-}
-```
-### Transform Extension
-```C# 
-/*
-     * Source: http://answers.unity.com/answers/1352565/view.html
-     */
-    public static class TransformExtensions
-    {
-
-        public static List<GameObject> FindObjectsWithTag(this Transform parent, string tag)
-        {
-            List<GameObject> taggedGameObjects = new List<GameObject>();
-
-            for (int i = 0; i < parent.childCount; i++)
-            {
-                Transform child = parent.GetChild(i);
-                if (child.CompareTag(tag))
-                {
-                    taggedGameObjects.Add(child.gameObject);
-                }
-                if (child.childCount > 0)
-                {
-                    taggedGameObjects.AddRange(FindObjectsWithTag(child, tag));
-                }
-            }
-            return taggedGameObjects;
-        }
-
     }
 }
 ```

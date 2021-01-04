@@ -1,0 +1,6 @@
+model_checkpoint_path: "GoodCar-836576.ckpt"
+all_model_checkpoint_paths: "GoodCar-649976.ckpt"
+all_model_checkpoint_paths: "GoodCar-699991.ckpt"
+all_model_checkpoint_paths: "GoodCar-749975.ckpt"
+all_model_checkpoint_paths: "GoodCar-799968.ckpt"
+all_model_checkpoint_paths: "GoodCar-836576.ckpt"
