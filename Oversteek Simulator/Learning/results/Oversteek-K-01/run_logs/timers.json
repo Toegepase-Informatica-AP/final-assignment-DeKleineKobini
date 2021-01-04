@@ -1,0 +1,78 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1609273026",
+        "python_version": "3.6.9 (default, Oct  8 2020, 12:12:24) \n[GCC 8.4.0]",
+        "command_line_arguments": "/home/kobe/.local/bin/mlagents-learn Oversteek-01.yml --run-id Oversteek-K-01 --resume",
+        "mlagents_version": "0.23.0",
+        "mlagents_envs_version": "0.23.0",
+        "communication_protocol_version": "1.3.0",
+        "pytorch_version": "1.7.1",
+        "numpy_version": "1.19.4",
+        "end_time_seconds": "1609273028"
+    },
+    "total": 1.734738400000424,
+    "count": 1,
+    "self": 0.013334599998415797,
+    "children": {
+        "run_training.setup": {
+            "total": 0.13425380000080622,
+            "count": 1,
+            "self": 0.13425380000080622
+        },
+        "TrainerController.start_learning": {
+            "total": 1.587150000001202,
+            "count": 1,
+            "self": 0.0009177000010822667,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 1.4803977999999915,
+                    "count": 1,
+                    "self": 1.4803977999999915
+                },
+                "trainer_threads": {
+                    "total": 3.1800000215298496e-05,
+                    "count": 1,
+                    "self": 3.1800000215298496e-05,
+                    "children": {
+                        "thread_root": {
+                            "total": 0.0,
+                            "count": 0,
+                            "is_parallel": true,
+                            "self": 0.0,
+                            "children": {
+                                "trainer_advance": {
+                                    "total": 0.000624700000116718,
+                                    "count": 1,
+                                    "is_parallel": true,
+                                    "self": 2.6899999284069054e-05,
+                                    "children": {
+                                        "process_trajectory": {
+                                            "total": 0.000597800000832649,
+                                            "count": 1,
+                                            "is_parallel": true,
+                                            "self": 0.000597800000832649
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "TrainerController._save_models": {
+                    "total": 0.10580269999991287,
+                    "count": 1,
+                    "self": 0.007460999999238993,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.09834170000067388,
+                            "count": 1,
+                            "self": 0.09834170000067388
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
