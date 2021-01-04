@@ -10,6 +10,7 @@
 8. [Beschrijving gedragingen objecten](#beschrijving-gedragingen-objecten)
 9. [Verloop van de training](#verloop-van-de-training)
 10. [Resultaten training](#resultaten-training)
+11. [Roadblocks](#Roadblocks)
 
 ## Inleiding
 In dit document zal u een goede uitleg over het project krijgen en wat we hier allemaal in gedaan hebben en hoe alles in werking gegaan is. 
@@ -84,7 +85,7 @@ Hier zien we een streep van het zebrapad waar de speler over zal kunnen wandelen
 
 In deze foto kunnen we zien dat er een basisscene opgesteld is waarop we een zebrapad, voetgangerspad en een weg kunnen observeren. We hebben bewust gekozen om de scene basic te houden om zo meer op de functionaliteit te kunnen letten waardoor we meer vooruitgang konden boeken.
 ## Scripts
-#### Car
+### Car
 ```C#
 public abstract class Car : Agent
 {
@@ -155,7 +156,7 @@ public abstract class Car : Agent
     public abstract void OnCollisionEnter(Collision other);
 }
 ```
-#### Good car
+### Good car
 ```C#
 public class GoodCar : Car
 {
@@ -201,7 +202,7 @@ public class GoodCar : Car
     }
 }
 ```
-#### Bad car
+### Bad car
 ```C#
 public class BadCar : Car
 {
@@ -245,7 +246,7 @@ public class BadCar : Car
     }
 }
 ```
-#### Environment
+### Environment
 ```C#
 public enum RoadSide
 {
@@ -325,7 +326,7 @@ public class Environment : MonoBehaviour
     }
 }
 ```
-#### Spawnpoint
+### Spawnpoint
 ```C#
 public class SpawnPoint : MonoBehaviour
 {
@@ -381,7 +382,7 @@ public class SpawnPoint : MonoBehaviour
     }
 }
 ```
-#### Transform Extension
+### Transform Extension
 ```C# 
 /*
      * Source: http://answers.unity.com/answers/1352565/view.html
@@ -411,7 +412,7 @@ public class SpawnPoint : MonoBehaviour
     }
 }
 ```
-#### Player trigger
+### Player trigger
 ```C#
 public class PlayerTrigger : MonoBehaviour
     {
@@ -439,7 +440,7 @@ public class PlayerTrigger : MonoBehaviour
     }
 }
 ```
-#### Player
+### Player
 ```C#
 public class Player : Agent
 {
@@ -562,7 +563,7 @@ In het volgende hoofdstuk zullen we meer uitbreiden over de resultaten die we he
 
 
 # Slotwoord
-#### Roadblocks
+### Roadblocks
 We hebben enkele roadblocks ervaren die we zeker moesten oplossen om zo het werkende te krijgen. 
 Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wanneer de player aangereden werd tijdens training dat de score na het resetten van de environment nog meetelde waardoor de speler agent op een score van -1 begon. 
 
