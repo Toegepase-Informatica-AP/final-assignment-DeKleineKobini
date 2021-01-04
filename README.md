@@ -19,8 +19,8 @@
 | Anne Toussaint         | s106511  |
 | Kirishalini Kanagarasa | s108145  |
 | Yalda Fazlehaq         | s108051  |
-| Kobe De Peuter         | s  |
-| Mathias | s  |
+| Kobe De Peuter         | s107571  |
+| Mathias                | s103579  |
 
 ## Inleiding
 Voor het vak VR-Experience kregen wij de opdracht om een spel te bedenken waarbij zowel Virtual Reality als ML-Agents een meerwaarde zal zijn.
