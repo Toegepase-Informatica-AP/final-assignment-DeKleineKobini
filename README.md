@@ -1,30 +1,48 @@
 # Oversteek simulator
 # Table of contents
 1. [Inleiding](#Inleiding)
-2. [Korte samenvatting](#Korte-samenvatting)
-3. [Installatie](#Installatie)
-4. [Verloop simulatie](#Verloop-simulatie)
-5. [Observaties, acties en beloningen](#Observaties-acties-en-beloningen)
-6. [Beschrijving objecten](#beschrijving-objecten)
-7. [Scripts](#Scripts)
-8. [Beschrijving gedragingen objecten](#beschrijving-gedragingen-objecten)
-9. [Verloop van de training](#verloop-van-de-training)
-10. [Resultaten training](#resultaten-training)
+2. [Groepsleden](#Groepsleden)
+3. [Korte samenvatting](#Korte-samenvatting)
+4. [Installatie](#Installatie)
+5. [Verloop simulatie](#Verloop-simulatie)
+6. [Observaties, acties en beloningen](#Observaties-acties-en-beloningen)
+7. [Beschrijving objecten](#beschrijving-objecten)
+8. [Scripts](#Scripts)
+9. [Beschrijving gedragingen objecten](#beschrijving-gedragingen-objecten)
+10. [Verloop van de training](#verloop-van-de-training)
+11. [Resultaten training](#resultaten-training)
 11. [Roadblocks](#Roadblocks)
 
+## Groepsleden
+| Naam                   | S-nummer |
+| ---------------------- | -------- |
+| Anne Toussaint         | s106511  |
+| Kirishalini Kanagarasa | s108145  |
+| Yalda Fazlehaq         | s108051  |
+| Kobe De Peuter         | s  |
+| Mathias | s  |
+
 ## Inleiding
-In dit document zal u een goede uitleg over het project krijgen en wat we hier allemaal in gedaan hebben en hoe alles in werking gegaan is. 
+Voor het vak VR-Experience kregen wij de opdracht om een spel te bedenken waarbij zowel Virtual Reality als ML-Agents een meerwaarde zal zijn.
+Hiervoor maken we gebruik van Unity.
+In dit document zal u een goede uitleg over het project krijgen, wat we hier allemaal in gedaan hebben en hoe alles in zijn werking gegaan is. 
 
 ## Korte samenvatting
-Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kinderen zullen kunnen leren om veilig de straat over te steken en hoe ze deze situaties moeten interpreteren.
+Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kinderen zullen kunnen leren om veilig de straat over te steken.
+Het is de bedoeling dat ze leren hoe ze veilig kunnen oversteken.
 
 Hier zullen de autos volledig door een getrainde AI worden bestuurd om zo echte bestuurders te simuleren.
 
 ## Installatie
-- Unity V2019.4.16f1
-- ML Agents V1.0.5
-- Oculus XR plugin V1.6.1
-- Unity asset: Character Pack Free Sample
+
+| Programma/tool/asset  | Versie         |  Naam                      |
+| --------------------- | -------------- | -------------------------- |
+| Unity                 | 2019.4.16f1    |                            |
+| Python                | 3.8.1 of hoger |                            |
+| ML Agents             | 1.0.5          |                            |
+| Tensorboard           | 2.3.1          |                            |
+| Oculus XR plugin      | 1.6.1          |                            |
+| Unity asset           | /              | Character Pack Free Sample |
 
 ![Unity asset character](md_images/characterpack.png)
 
