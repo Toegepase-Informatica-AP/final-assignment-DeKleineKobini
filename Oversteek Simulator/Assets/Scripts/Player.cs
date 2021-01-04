@@ -1,5 +1,4 @@
-﻿using Assets.Scripts;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +11,18 @@ public class Player : Agent
     public float rotationSpeed = 300;
 
     private Environment environment;
-    private GameObject playerController;
     private CharacterController controller;
 
     public override void Initialize()
     {
         base.Initialize();
         environment = GetComponentInParent<Environment>();
-        playerController = environment.transform.FindObjectsWithTag("PlayerController").First();
-        controller = playerController.GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
     }
 
     public override void OnEpisodeBegin()
     {
-        SetReward(0);
+        // SetReward(0);
         environment.ResetEnvironment();
     }
 
@@ -53,17 +50,17 @@ public class Player : Agent
     {
         if (vectorAction[0] != 0)
         {
-            controller.Move(playerController.transform.forward * movementSpeed * Time.deltaTime);
+            transform.position += transform.forward * movementSpeed * Time.deltaTime;
         }
 
         if (vectorAction[1] != 0)
         {
-            AddReward(-0.0005f);
-            playerController.transform.Rotate(0, rotationSpeed * (vectorAction[1] * 2 - 3) * Time.deltaTime, 0);
+            transform.Rotate(0, rotationSpeed * (vectorAction[1] * 2 - 3) * Time.deltaTime, 0);
         }
     }
 
-    public void OnChildTriggerEnter(Collider collision)
+
+    public void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Finish"))
         {
@@ -72,7 +69,7 @@ public class Player : Agent
         }
     }
 
-    public void OnChildTriggerStay(Collider collision)
+    public void OnTriggerStay(Collider collision)
     {
         if (collision.CompareTag("Grass"))
         {
@@ -80,11 +77,11 @@ public class Player : Agent
         }
         else if (collision.CompareTag("Road"))
         {
-            AddReward(-0.0001f);
+            AddReward(-0.0002f);
         }
     }
 
-    public void OnChildCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Car"))
         {

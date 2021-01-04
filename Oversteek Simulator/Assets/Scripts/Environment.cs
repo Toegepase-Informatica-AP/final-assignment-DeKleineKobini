@@ -1,5 +1,4 @@
-﻿using Assets.Scripts;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,20 +13,19 @@ public enum RoadSide
 }
 public class Environment : MonoBehaviour
 {
-    private const float SPAWN_RANGE_X = 20f;
-    private const float SPAWN_RANGE_Z = 14f;
-    
+    private const float SPAWN_RANGE_X = 45;
+    private const float SPAWN_RANGE_Z = 6;
+
+    public int spawnX = 0;
     public int maxSpeed = 30;
     public GameObject goodCar;
     public GameObject badCar;
     public GameObject scoreboard;
 
     private Player player;
-    private GameObject playerController;
-    private CharacterController c;
+    // private GameObject playerObject;
     private TextMeshPro _scoreboard;
-    private Vector3 initialControllerPosition;
-    private Quaternion initialControllerRotation;
+    private Vector3 initialPlayerPosition;
     
     internal GameObject cars;
 
@@ -35,11 +33,9 @@ public class Environment : MonoBehaviour
     public void OnEnable()
     {
         player = GetComponentInChildren<Player>();
-        playerController = player.transform.FindObjectsWithTag("PlayerController").First();
-        c = playerController.GetComponent<CharacterController>();
+        // playerObject = player.transform.FindObjectsWithTag("PlayerController").First();
         _scoreboard = scoreboard.GetComponent<TextMeshPro>();
-        initialControllerPosition = playerController.transform.localPosition;
-        initialControllerRotation = playerController.transform.localRotation;
+        initialPlayerPosition = player.transform.localPosition;
         
         cars = transform.Find("Cars").gameObject;
     }
@@ -54,15 +50,16 @@ public class Environment : MonoBehaviour
     {
         int randomNumber = Random.Range(0, 3);
         
-        float x = Random.Range(-SPAWN_RANGE_X, SPAWN_RANGE_X);
-        float z = Random.Range(initialControllerPosition.z, SPAWN_RANGE_Z);
-        
-        if (randomNumber == 0)
+        if (randomNumber == 0) // Spawn on crossing.
         {
-            return new Vector3(initialControllerPosition.x, 1f, z);
+            float z = Random.Range(initialPlayerPosition.z, SPAWN_RANGE_Z);
+
+            return new Vector3(initialPlayerPosition.x, 0, z);
         }
-        
-        return new Vector3(x, 1f, initialControllerPosition.z);
+
+        float x = Random.Range(-SPAWN_RANGE_X, SPAWN_RANGE_X);
+
+        return new Vector3(x, 0, initialPlayerPosition.z);
     }
 
     private Quaternion GetRandomRotation()
@@ -78,9 +75,7 @@ public class Environment : MonoBehaviour
             GameObject.Destroy(car.gameObject);
         }
         
-        c.enabled = false;
-        c.transform.localPosition = GetRandomPosition();
-        c.transform.localRotation = GetRandomRotation();
-        c.enabled = true;
+        player.transform.localPosition = GetRandomPosition();
+        player.transform.localRotation = GetRandomRotation();
     }
 }
