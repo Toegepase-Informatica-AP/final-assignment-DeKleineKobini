@@ -5,6 +5,9 @@ Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kindere
 
 Hier zullen de autos volledig door een getrainde AI worden bestuurd om zo echte bestuurders te simuleren.
 ## Installatie
+- Unity V2019.4.16f1
+- ML Agents V1.0.5
+- Oculus XR plugin V1.6.1
 
 ## Inleiding
 
