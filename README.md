@@ -32,6 +32,60 @@ Voor onze beloningen hebben we verschillende tabellen aangezien we met meerde AI
 # Beschrijving objecten
 ### Auto
 ![Car image](md_images/carimage.png)
+![Car settings](md_images/carSettings.png)
+![Car box Collider](md_images/carBoxCollider.png)
+
+Aan de auto werd een ray perception sensor, Decision requester en het good car script toegevoegd.
+Zorg ook zeker dat de box collider verandert word zodat deze de auto goed encapsuleert.
+
+Bij de 2de auto prefab zien we dat er een bad car script aan toegevoegd werd.
+De settings voor alle 2 de auto's zijn compleet hetzelfde enkel het aangevoegd script (Goodcar, Badcar) verandert.
+### Auto scripts
+```C#
+public class GoodCar : Car
+{
+    public override void AddNotOnDestinationReward()
+    {
+        AddReward(-0.001f);
+    }
+
+    public override void AddMovesTooFastReward()
+    {
+        if (environment == null)
+        {
+            environment = GetComponentInParent<Environment>();
+        }
+
+        if (environment != null && rb.velocity.x > environment.maxSpeed)
+        {
+            AddReward(-0.1f);
+        }
+    }
+
+    public override void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerController"))
+        {
+            AddReward(-1f);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+        else if (other.gameObject.tag.Contains("Destination"))
+        {
+            AddReward(1f);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+        else if (other.gameObject.CompareTag("Car"))
+        {
+            AddReward(-0.8f);
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+    }
+}
+```
 ### Player
 ![Player image](md_images/playerModelImage.png)
 ### Pedestrian Crossing
