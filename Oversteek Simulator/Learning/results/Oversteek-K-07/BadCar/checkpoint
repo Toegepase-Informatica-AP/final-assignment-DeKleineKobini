@@ -1,0 +1,2 @@
+model_checkpoint_path: "BadCar-148218.ckpt"
+all_model_checkpoint_paths: "BadCar-148218.ckpt"
