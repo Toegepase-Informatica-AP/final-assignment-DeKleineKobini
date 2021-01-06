@@ -21,6 +21,7 @@ public class Environment : MonoBehaviour
     public GameObject goodCar;
     public GameObject badCar;
     public GameObject scoreboard;
+    public GameObject finish;
 
     private Player player;
     // private GameObject playerObject;
@@ -28,7 +29,6 @@ public class Environment : MonoBehaviour
     private Vector3 initialPlayerPosition;
     
     internal GameObject cars;
-
 
     public void OnEnable()
     {

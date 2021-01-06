@@ -1,0 +1,49 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1609841022",
+        "python_version": "3.8.5 (default, Sep  3 2020, 21:29:08) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\tools\\Anaconda3\\Scripts\\mlagents-learn Oversteek-02.yml --run-id Oversteek-K-04 --resume",
+        "mlagents_version": "0.21.0",
+        "mlagents_envs_version": "0.21.0",
+        "communication_protocol_version": "1.2.0",
+        "tensorflow_version": "2.3.1",
+        "numpy_version": "1.19.2",
+        "end_time_seconds": "1609841031"
+    },
+    "total": 8.636329,
+    "count": 1,
+    "self": 0.2894640000000006,
+    "children": {
+        "run_training.setup": {
+            "total": 0.006716200000000061,
+            "count": 1,
+            "self": 0.006716200000000061
+        },
+        "TrainerController.start_learning": {
+            "total": 8.3401488,
+            "count": 1,
+            "self": 0.00013920000000133825,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 8.296400799999999,
+                    "count": 1,
+                    "self": 8.296400799999999
+                },
+                "TrainerController._save_models": {
+                    "total": 0.04360879999999945,
+                    "count": 1,
+                    "self": 1.6499999999197712e-05,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.04359230000000025,
+                            "count": 1,
+                            "self": 0.04359230000000025
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

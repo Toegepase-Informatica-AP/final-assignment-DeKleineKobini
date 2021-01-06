@@ -3,27 +3,51 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class Player : Agent
 {
     public float movementSpeed = 1;
     public float rotationSpeed = 300;
+    private float rewardFactor = 0.001f;
 
     private Environment environment;
     private CharacterController controller;
+    private GameObject finish;
+    private Rigidbody rb;
+    private bool isMoving = false;
 
     public override void Initialize()
     {
         base.Initialize();
         environment = GetComponentInParent<Environment>();
         controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
+        finish = environment.finish;
     }
 
     public override void OnEpisodeBegin()
     {
-        // SetReward(0);
+        rb.velocity = new Vector3(0, 0, 0);
         environment.ResetEnvironment();
+    }
+
+    private void FixedUpdate()
+    {
+        float distance = Vector3.Distance(transform.localPosition, finish.transform.localPosition);
+
+        if (distance < 25 && isMoving)
+        {
+            AddReward(rewardFactor/distance);
+        }
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        float distance = Vector3.Distance(transform.localPosition, finish.transform.localPosition);
+        
+        sensor.AddObservation(distance); // 1 observation
     }
 
     public override void Heuristic(float[] actionsOut)
@@ -48,9 +72,11 @@ public class Player : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
+        isMoving = false;
         if (vectorAction[0] != 0)
         {
-            transform.position += transform.forward * movementSpeed * Time.deltaTime;
+            transform.position += transform.forward * movementSpeed * Time.deltaTime * 2;
+            isMoving = true;
         }
 
         if (vectorAction[1] != 0)

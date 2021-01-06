@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964124, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1459,6 +1459,7 @@ MonoBehaviour:
   goodCar: {fileID: 1833253201146048, guid: 3876e5469a8e4774c8e455e83060541e, type: 3}
   badCar: {fileID: 1216336052455082, guid: 5d2d294a55c8dad4f863791b2ec6aa9e, type: 3}
   scoreboard: {fileID: 856250447}
+  finish: {fileID: 0}
 --- !u!1 &1414245519
 GameObject:
   m_ObjectHideFlags: 0
