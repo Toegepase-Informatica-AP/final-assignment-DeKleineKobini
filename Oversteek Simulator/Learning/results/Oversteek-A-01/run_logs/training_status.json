@@ -1,0 +1,127 @@
+{
+    "Player": {
+        "checkpoints": [
+            {
+                "steps": 7349945,
+                "file_path": "results/Oversteek-A-07/Player/Player-7349945.nn",
+                "reward": 0.36868354185770097,
+                "creation_time": 1610004068.326514
+            },
+            {
+                "steps": 7399981,
+                "file_path": "results/Oversteek-A-07/Player/Player-7399981.nn",
+                "reward": 0.9856168664991856,
+                "creation_time": 1610004360.6594172
+            },
+            {
+                "steps": 7449993,
+                "file_path": "results/Oversteek-A-07/Player/Player-7449993.nn",
+                "reward": 0.48497288511134684,
+                "creation_time": 1610004653.511879
+            },
+            {
+                "steps": 7499987,
+                "file_path": "results/Oversteek-A-07/Player/Player-7499987.nn",
+                "reward": 0.11043927958235145,
+                "creation_time": 1610004950.1225998
+            },
+            {
+                "steps": 7546193,
+                "file_path": "results/Oversteek-A-07/Player/Player-7546193.nn",
+                "reward": 0.6289969190085472,
+                "creation_time": 1610005231.3552792
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 7546193,
+            "file_path": "results/Oversteek-A-07/Player.nn",
+            "reward": 0.6289969190085472,
+            "creation_time": 1610005231.3552792
+        }
+    },
+    "GoodCar": {
+        "checkpoints": [
+            {
+                "steps": 2799997,
+                "file_path": "results/Oversteek-A-07/GoodCar/GoodCar-2799997.nn",
+                "reward": 0.8569814694055822,
+                "creation_time": 1610002198.8037918
+            },
+            {
+                "steps": 2849984,
+                "file_path": "results/Oversteek-A-07/GoodCar/GoodCar-2849984.nn",
+                "reward": 0.8841549166491334,
+                "creation_time": 1610002960.676786
+            },
+            {
+                "steps": 2899980,
+                "file_path": "results/Oversteek-A-07/GoodCar/GoodCar-2899980.nn",
+                "reward": 0.8400999890795599,
+                "creation_time": 1610003753.843383
+            },
+            {
+                "steps": 2949969,
+                "file_path": "results/Oversteek-A-07/GoodCar/GoodCar-2949969.nn",
+                "reward": 0.7526415009446934,
+                "creation_time": 1610004540.601195
+            },
+            {
+                "steps": 2990663,
+                "file_path": "results/Oversteek-A-07/GoodCar/GoodCar-2990663.nn",
+                "reward": 0.5416186109986492,
+                "creation_time": 1610005231.8629959
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2990663,
+            "file_path": "results/Oversteek-A-07/GoodCar.nn",
+            "reward": 0.5416186109986492,
+            "creation_time": 1610005231.8629959
+        }
+    },
+    "BadCar": {
+        "checkpoints": [
+            {
+                "steps": 1249980,
+                "file_path": "results/Oversteek-A-07/BadCar/BadCar-1249980.nn",
+                "reward": 0.8672500215470791,
+                "creation_time": 1609999481.212464
+            },
+            {
+                "steps": 1299998,
+                "file_path": "results/Oversteek-A-07/BadCar/BadCar-1299998.nn",
+                "reward": 0.6511428751400672,
+                "creation_time": 1610001121.563232
+            },
+            {
+                "steps": 1349972,
+                "file_path": "results/Oversteek-A-07/BadCar/BadCar-1349972.nn",
+                "reward": 0.8501509643070482,
+                "creation_time": 1610002696.200045
+            },
+            {
+                "steps": 1399970,
+                "file_path": "results/Oversteek-A-07/BadCar/BadCar-1399970.nn",
+                "reward": 0.7052577521973625,
+                "creation_time": 1610004353.677501
+            },
+            {
+                "steps": 1425426,
+                "file_path": "results/Oversteek-A-07/BadCar/BadCar-1425426.nn",
+                "reward": 0.4906050582717666,
+                "creation_time": 1610005232.3090508
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1425426,
+            "file_path": "results/Oversteek-A-07/BadCar.nn",
+            "reward": 0.4906050582717666,
+            "creation_time": 1610005232.3090508
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.19.0",
+        "tensorflow_version": "2.3.1"
+    }
+}

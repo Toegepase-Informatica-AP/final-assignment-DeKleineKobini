@@ -1,0 +1,6 @@
+model_checkpoint_path: "BadCar-1425426.ckpt"
+all_model_checkpoint_paths: "BadCar-1249980.ckpt"
+all_model_checkpoint_paths: "BadCar-1299998.ckpt"
+all_model_checkpoint_paths: "BadCar-1349972.ckpt"
+all_model_checkpoint_paths: "BadCar-1399970.ckpt"
+all_model_checkpoint_paths: "BadCar-1425426.ckpt"
