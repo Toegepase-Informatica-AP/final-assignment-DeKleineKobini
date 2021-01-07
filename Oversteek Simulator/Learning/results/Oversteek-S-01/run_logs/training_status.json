@@ -1,0 +1,109 @@
+{
+    "Player": {
+        "checkpoints": [
+            {
+                "steps": 6949993,
+                "file_path": "results\\Oversteek-S-01\\Player\\Player-6949993.nn",
+                "reward": 0.28521916088040755,
+                "creation_time": 1610042943.4198592
+            },
+            {
+                "steps": 6999992,
+                "file_path": "results\\Oversteek-S-01\\Player\\Player-6999992.nn",
+                "reward": 0.7884160810835882,
+                "creation_time": 1610043677.1332
+            },
+            {
+                "steps": 7049959,
+                "file_path": "results\\Oversteek-S-01\\Player\\Player-7049959.nn",
+                "reward": 0.7207256482184135,
+                "creation_time": 1610044420.8595672
+            },
+            {
+                "steps": 7099975,
+                "file_path": "results\\Oversteek-S-01\\Player\\Player-7099975.nn",
+                "reward": 0.756214987522421,
+                "creation_time": 1610045152.6313093
+            },
+            {
+                "steps": 7149995,
+                "file_path": "results\\Oversteek-S-01\\Player\\Player-7149995.nn",
+                "reward": 0.3827114249377147,
+                "creation_time": 1610045901.5911129
+            }
+        ]
+    },
+    "GoodCar": {
+        "checkpoints": [
+            {
+                "steps": 2449970,
+                "file_path": "results\\Oversteek-S-01\\GoodCar\\GoodCar-2449970.nn",
+                "reward": 0.5445410523716594,
+                "creation_time": 1610037432.7325203
+            },
+            {
+                "steps": 2499948,
+                "file_path": "results\\Oversteek-S-01\\GoodCar\\GoodCar-2499948.nn",
+                "reward": 0.5611811485656105,
+                "creation_time": 1610039357.9809575
+            },
+            {
+                "steps": 2549951,
+                "file_path": "results\\Oversteek-S-01\\GoodCar\\GoodCar-2549951.nn",
+                "reward": 0.3877118543911157,
+                "creation_time": 1610041112.798387
+            },
+            {
+                "steps": 2599994,
+                "file_path": "results\\Oversteek-S-01\\GoodCar\\GoodCar-2599994.nn",
+                "reward": 0.546098580234684,
+                "creation_time": 1610042746.0762258
+            },
+            {
+                "steps": 2649963,
+                "file_path": "results\\Oversteek-S-01\\GoodCar\\GoodCar-2649963.nn",
+                "reward": 0.6716785587362081,
+                "creation_time": 1610044396.836934
+            }
+        ]
+    },
+    "BadCar": {
+        "checkpoints": [
+            {
+                "steps": 1399974,
+                "file_path": "results\\Oversteek-S-01\\BadCar\\BadCar-1399974.nn",
+                "reward": 0.7367174048128579,
+                "creation_time": 1610031166.8394597
+            },
+            {
+                "steps": 1449964,
+                "file_path": "results\\Oversteek-S-01\\BadCar\\BadCar-1449964.nn",
+                "reward": 0.5352413896230402,
+                "creation_time": 1610034269.6268873
+            },
+            {
+                "steps": 1499995,
+                "file_path": "results\\Oversteek-S-01\\BadCar\\BadCar-1499995.nn",
+                "reward": 0.6083333459876789,
+                "creation_time": 1610037587.9434137
+            },
+            {
+                "steps": 1549969,
+                "file_path": "results\\Oversteek-S-01\\BadCar\\BadCar-1549969.nn",
+                "reward": 0.6594297998406469,
+                "creation_time": 1610040302.0809512
+            },
+            {
+                "steps": 1599996,
+                "file_path": "results\\Oversteek-S-01\\BadCar\\BadCar-1599996.nn",
+                "reward": 0.8388191564850747,
+                "creation_time": 1610043186.488947
+            }
+        ]
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}
