@@ -89,7 +89,7 @@ Bij de speler zien we dat er ray perception word toegevoegd in empty game object
 
 Alsook moet er op het player object zelf ook nog de box collider worden aangepast en de nodige scripts toegevoegd Bvb: `OVR Player controller`
 
-### Pedestrian Crossing
+### Oversteekpunt
 ![Pedestrian Crossing](md_images/stripeImage.png)
 
 ![Pedestrian crossing info](md_images/stripeInfo.png)
@@ -99,7 +99,7 @@ Hier zien we een streep van het zebrapad waar de speler over zal kunnen wandelen
 ### Scene
 ![Scene image](md_images/sceneImage.png)
 
-In deze foto kunnen we zien dat er een basisscene opgesteld is waarop we een zebrapad, voetgangerspad en een weg kunnen observeren. We hebben bewust gekozen om de scene basic te houden om zo meer op de functionaliteit te kunnen letten waardoor we meer vooruitgang konden boeken.
+In deze foto kunnen we zien dat er een basisscene opgesteld is waarop we een oversteekpunt, voetgangerspad en een weg kunnen observeren. We hebben bewust gekozen om de scene basic te houden om zo meer op de functionaliteit te kunnen letten waardoor we meer vooruitgang konden boeken.
 ## Scripts
 ### Car
 ```C#
