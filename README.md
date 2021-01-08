@@ -45,10 +45,10 @@
     - [Run 4](#run-4)
     - [Run 8](#run-8)
     - [Run 9](#run-9)
-- [Slotwoord](#slotwoord)
-  - [Roadblocks](#roadblocks)
-  - [Conclusie](#conclusie)
-- [Bronnen](#bronnen)
+  - [Slotwoord](#slotwoord)
+    - [Roadblocks](#roadblocks)
+    - [Conclusie](#conclusie)
+  - [Bronnen](#bronnen)
 
 ## Groepsleden
 
@@ -899,25 +899,26 @@ Opzich was dit een degelijke run voor de speler, maar er waren nog een aantal pr
 ![Resultaten A](images/training/09a.png)
 ![Resultaten B](images/training/09b.png)
 
-Bij deze trainingset hebben we opgemerkt dat de auto's zowel de `Good car` als `Bad car` veel te snel reden dan ze mochten rijden. Hierdoor is de curve van de auto reward redelijk eentonig aangezien de auto's altijd aan hetzelfde tempo naar de eindmeet reden.
+Bij deze trainingset hebben we opgemerkt dat zowel de `Good car` als `Bad car` veel sneller reden dan ze mochten rijden. De curve van de auto reward waren ook redelijk eentonig.
 
-Bij de `Player` zien we echter dat deze curve veel meer fluctuatie heeft.
+Bij de `Player` zien we echter dat deze curve veel meer fluctuatie heeft. De curve gaat, ondanks de fluctuaties, steeds iets naar boven. De fluctuaties blijven wel geregeld terugkomen.
 
 Tijdens de training hebben we hier geobserveerd dat indien de `Player` dicht genoeg bij de finish spawnt dat na een bepaalde duur training de speler hier wel zich naartoe begeeft, echter zien we wel dat de `Player` niet altijd het oversteekpunt neemt en dus gewoon over de weg zich begeeft. Ook probeert de `Player` auto's te vermijden.
 
-Indien de `Player` te ver spawned dan merken we op dat de speler cirkels begint te draaien. Momenteel is hier nog geen oplossing voor gevonden en zal de `Player` vaak niet over de eindmeet geraken.
+Indien de `Player` te ver spawned, merken we op dat de speler cirkels begint te draaien. Momenteel is hier nog geen oplossing voor gevonden en zal de `Player` vaak niet over de eindmeet geraken.
 
 De dieptepunten die u op de grijze lijn kan zien is dus het moment dat hierboven besproken werd waar de `Player` rond zat te draaien.
 
 ```kobe
-Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de speler redelijk hard aangepast en toch ook nog wat reward aanpassingen. Uiteindelijk is ook deze training niet echt een succes. Omdat de speler slecht leert, hebben de auto's ook niet veel om te leren.
+Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de speler redelijk hard aangepast en toch ook nog wat reward aanpassingen aangebracht. Uiteindelijk is ook deze training niet echt een succes. Aangezien de speler slecht leert, hebben de auto's ook niet veel om te leren.
 
-De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt, en steekt hij direct over, zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
+De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt en steekt hij direct over zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
 ```
 
 ## Slotwoord
 
 ### Roadblocks
+
 We hebben enkele roadblocks ervaren die we zeker moesten oplossen om zo het werkende te krijgen.
 Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wanneer de player aangereden werd tijdens training dat de score na het resetten van de environment nog meetelde waardoor de speler agent op een score van -1 begon.
 
@@ -931,7 +932,7 @@ Voor dit project hebben we getracht een simulator te maken die het echte leven z
 
 Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten van de trainingen zijn en dat we toch zeer veel aanpassingen nog zouden kunnen doen om zo een beter resultaat te bekomen.
 
-We hebben opgemerkt dat dit type project veel meer tijd zou kosten dan we eigenlijk hadden. De trainingen die de players en de cars moeten doorgaan zijn lange trainingen, koppel dit met onze weinige ervaring met ml agents en unity dan word dit allemaal veel moeilijker.
+De resultaten waren niet helemaal wat we gehoopt hadden. De auto's stoppen niet voor de speler en de speler gaat soms redelijk goed naar de finish, maar blijft andere keren in rondjes draaien. Het zou kunnen dat de auto's niet leren stoppen voor de speler omdat de speler er lang over doet om te leren over te steken. Hierdoor kan het zijn dat de auto's niet genoeg in aanraking komen met de speler om hieruit te leren. Een mogelijke oplossing hiervoor is om eerst de speler al een deel te trainen, en dan pas de auto's mee trainen. Of om ervoor te zorgen dat de speler sneller het juiste begint te doen door de beloningen aan te passen.
 
 ## Bronnen
 
