@@ -31,6 +31,12 @@
     - [Auto](#auto-1)
     - [Player](#player-2)
   - [Verloop van de training](#verloop-van-de-training)
+  - [One-pager](#one-pager)
+    - [Spelverloop](#spelverloop)
+    - [Meerwaarde](#meerwaarde)
+  - [Veranderingen ten opzichte van de one-pager](#veranderingen-ten-opzichte-van-de-one-pager)
+    - [Interactie](#interactie)
+    - [Kwadrant](#kwadrant)
   - [Resultaten training](#resultaten-training)
     - [Run 2](#run-2)
     - [Run 3](#run-3)
@@ -39,7 +45,7 @@
     - [Run 9](#run-9)
 - [Slotwoord](#slotwoord)
     - [Roadblocks](#roadblocks)
-    - [Conclusie](#Conclusie)
+    - [Conclusie](#conclusie)
 - [Bronnen](#bronnen)
 
 ## Groepsleden
@@ -784,6 +790,38 @@ tensorboard --logdir results
 ```
 
 In het volgende hoofdstuk zal meer uitleg volgen over de resultaten van onze trainingen en observaties.
+
+## One-pager
+
+Voor we aan dit project begonnen hebben we een one-pager opgesteld. Deze informatie kan je hieronder bekijken:
+
+### Spelverloop
+
+Auto’s rijden over de weg. De bedoeling is dat de speler veilig de straat oversteekt. Als de auto’s de speler op tijd zien zullen ze beginnen remmen. Indien de auto’s niet op tijd kunnen stoppen en de speler aanrijden, is het game over.
+
+### Meerwaarde
+
+De auto’s een brein geven, heeft volgens ons een meerwaarde omdat we willen dat de auto’s de werkelijkheid nabootsen. In het echte leven zal niet elke chauffeur even oplettend zijn, dus door de keuzes van een auto te laten afhangen van een observatie zullen we dit nabootsen. We hebben dus hiervoor gekozen om te zorgen dat de kinderen leren in een omgevingen die zo veel mogelijk de werkelijkheid nabootst. Zonder deze extra intelligentie zou er weinig te leren zijn omdat er dan minder realisme aanwezig is.
+
+Als type AI-agent dachten we om een *Simultaneous Single-Agent* te gebruiken, omdat we willen dat er meerdere auto’s kunnen rijden.
+
+## Veranderingen ten opzichte van de one-pager
+
+Doorheen ons project zijn er een aantal plannen veranderd:
+
+- De speler is ook een AI-component geworden. Dit hebben we gedaan om zo een realistischere speler te simuleren.
+- De auto kan ook andere auto's zien.
+- Het type AI-agent is veranderd van *Simultaneous Single-Agent* naar een *Ecosystem*.
+
+### Interactie
+
+- Auto (agent) kan de speler niet zien en botst tegen de speler.
+- Auto (agent) ziet de speler te laat, dus kan niet op tijd stoppen en botst tegen de speler.
+- Auto (agent) kan speler zien als de speler dicht genoeg tegen de straat staat.
+
+### Kwadrant
+
+![Kwadrant One-pager](images/kwadrant.png)
 
 ## Resultaten training
 
