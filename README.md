@@ -39,6 +39,7 @@
     - [Run 9](#run-9)
 - [Slotwoord](#slotwoord)
     - [Roadblocks](#roadblocks)
+    - [Conclusie](#Conclusie)
 - [Bronnen](#bronnen)
 
 ## Groepsleden
@@ -796,6 +797,7 @@ Eerste run met degelijk duratie. Vrij saaie grafiek. We zijn gestopt met trainin
 
 ### Run 3
 
+![Resultaten](images/training/03.png)
 
 Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het geval te zijn omwille van ontbrekende raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
 
@@ -846,7 +848,15 @@ Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wann
 
 Alsook hebben we een roadblock gehad dat de speler door het toevoegen van gravity begon te vliegen in de lucht tegenstrijdig met het toevoegen van gravity natuurlijk, na het verwijderen van gravity was dit opgelost.
 
+Indien we een project van deze schaal in de toekomst zullen maken zullen we zeker moeten opletten dat we eerder beginnen trainen om zo fouten te herkennen die we mogelijks kunnen tegenkomen. 
 
+### Conclusie
+
+Voor dit project hebben we getracht een simulator te maken die het echte leven zo goed mogelijk nabootst.
+
+Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten van de trainingen zijn en dat we toch zeer veel aanpassingen nog zouden kunnen doen om zo een beter resultaat te bekomen.
+
+We hebben opgemerkt dat dit type project veel meer tijd zou kosten dan we eigenlijk hadden. De trainingen die de players en de cars moeten doorgaan zijn lange trainingen, koppel dit met onze weinige ervaring met ml agents en unity dan word dit allemaal veel moeilijker.
 
 
 
