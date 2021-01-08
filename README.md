@@ -825,20 +825,20 @@ Opzich was dit een degelijke run voor de speler, maar er waren nog een aantal pr
 ![Resultaten A](images/training/09a.png)
 ![Resultaten B](images/training/09b.png)
 
-Bij deze trainingset hebben we opgemerkt dat de auto's zowel de `Good car` als `Bad car` veel te snel reden dan ze mochten rijden. Hierdoor is de curve van de auto reward redelijk eentonig aangezien de auto's altijd aan hetzelfde tempo naar de eindmeet reden.
+Bij deze trainingset hebben we opgemerkt dat zowel de `Good car` als `Bad car` veel sneller reden dan ze mochten rijden. De curve van de auto reward waren ook redelijk eentonig.
 
-Bij de `Player` zien we echter dat deze curve veel meer fluctuatie heeft.
+Bij de `Player` zien we echter dat deze curve veel meer fluctuatie heeft. De curve gaat, ondanks de fluctuaties, steeds iets naar boven. De fluctuaties blijven wel geregeld terugkomen.
 
 Tijdens de training hebben we hier geobserveerd dat indien de `Player` dicht genoeg bij de finish spawnt dat na een bepaalde duur training de speler hier wel zich naartoe begeeft, echter zien we wel dat de `Player` niet altijd het oversteekpunt neemt en dus gewoon over de weg zich begeeft. Ook probeert de `Player` auto's te vermijden.
 
-Indien de `Player` te ver spawned dan merken we op dat de speler cirkels begint te draaien. Momenteel is hier nog geen oplossing voor gevonden en zal de `Player` vaak niet over de eindmeet geraken.
+Indien de `Player` te ver spawned, merken we op dat de speler cirkels begint te draaien. Momenteel is hier nog geen oplossing voor gevonden en zal de `Player` vaak niet over de eindmeet geraken.
 
 De dieptepunten die u op de grijze lijn kan zien is dus het moment dat hierboven besproken werd waar de `Player` rond zat te draaien.
 
 ```kobe
-Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de speler redelijk hard aangepast en toch ook nog wat reward aanpassingen. Uiteindelijk is ook deze training niet echt een succes. Omdat de speler slecht leert, hebben de auto's ook niet veel om te leren.
+Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de speler redelijk hard aangepast en toch ook nog wat reward aanpassingen aangebracht. Uiteindelijk is ook deze training niet echt een succes. Aangezien de speler slecht leert, hebben de auto's ook niet veel om te leren.
 
-De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt, en steekt hij direct over, zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
+De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt en steekt hij direct over zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
 ```
 
 # Slotwoord
