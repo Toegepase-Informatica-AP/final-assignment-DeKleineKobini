@@ -801,11 +801,13 @@ We zijn gestopt met deze training nadat we besloten hadden om veranderingen te d
 
 ### Run 3
 
-Na de tweede ronde hebben we de configuratie aangepast van `Oversteek-01.yml` naar `Oversteek-02.yml`. Er vanaf nu werden punten afgenomen voor rond te draaien en kon de speler ook op het zebrapad spawnen.
+Na de tweede ronde hebben we de configuratie aangepast van `Oversteek-01.yml` naar `Oversteek-02.yml`. Vanaf deze ronde werden punten afgenomen voor rond te draaien en kon de speler ook op het zebrapad spawnen.
 
 ![Resultaten](images/training/03.png)
 
-Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het geval te zijn omwille van ontbrekende raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
+De resultaten van de speler fluctueren enorm, maar de vlakkere delen hebben wel een duidelijk hogere score uiteindelijk. Beide autos hebben een gelijkwaardige grafiek, waarbij beiden vrij snel stabiel zijn.
+
+We zijn deze training gestopt omdat we een fout hadden ontdekt, er ontbraken heel wat raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
 
 ### Run 4
 
