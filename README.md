@@ -345,7 +345,7 @@ public class BadCar : Car
 }
 ```
 
-BadCar erft over van Car. Ook hier wordt de reward-logica uitgewerkt, maar BadCar.
+BadCar erft over van Car. Ook hier wordt de reward-logica uitgewerkt, maar specifiek voor BadCar.
 
 ### Environment
 ```csharp
@@ -733,6 +733,17 @@ Zo zal de speler kunnen leren omgaan met auto's die zoals in een echte verkeerss
 Indien we trainen met de auto zullen we de Player agent (Hieronder vermeld) ook nodig hebben aangezien ze in samenhang zullen trainen om zo de auto's te leren stoppen indien ze een speler detecteren.
 
 
+We hebben verschillende training rondes uitgevoerd, soms op verschillende machines. Hieronder zullen we de meest opvallende rondes tonen.
+
+
+
+### Run 2
+
+![Resultaten](images/training/02.png)
+
+Eerste run met degelijk duratie. Vrij saaie grafiek, gestopt met training nadat we besloten hadden om veranderingen te doen in het reward en het spawn systeem.
+
+### Run 3
 
 
 Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het geval te zijn omwille van ontbrekende raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
@@ -784,11 +795,9 @@ Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wann
 
 Alsook hebben we een roadblock gehad dat de speler door het toevoegen van gravity begon te vliegen in de lucht tegenstrijdig met het toevoegen van gravity natuurlijk, na het verwijderen van gravity was dit opgelost.
 
-### Conclusie
 
-Voor dit project hebben we getracht een simulator te maken die het echte leven zo goed mogelijk nabootst.
 
-Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten van de trainingen zijn en dat we toch zeer veel 
+
 
 # Bronnen
 github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
