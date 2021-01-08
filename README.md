@@ -94,11 +94,17 @@ Beide auto's hebben een script nodig die de effectieve agent toevoegt. Voor de g
 
 Om ervoor te zorgen dat de auto objecten effectief kan zien werd er een ray perception sensor toegevoegd. Het is belangrijk dat de sensor een aantal tags kan detecteren: player, car en crossing. Ook veranderen we het aantal rays, de ray breedte en de ray lengte. Verder willen we dat de sensor een beetje naar beneden kijkt, dus stellen we dit ook in. Om ervoor te zorgen dat we manueel de auto's kunnen besturen voegen we een decision requester toe.
 
+### Spawn Left & Spawn Right
 
+In de scene moeten ook zeker empty gameobjects toegevoegd worden genoemd: SpawnLeft en SpawnRight. 
+
+Dit zijn de locaties waar de auto's zullen spawnen, deze empty gameobjects zullen het script Spawn Point moeten krijgen en hier zal zeker de juiste kant van de weg geselecteerd moeten worden. In het script kan u de Road Side kiezen, deze stelt u gewoon in op de kant van de weg waar het empty game object zich bevind.
+
+Let goed op. Spawn Left en Spawn right is relatief tot de rechtse en linkse rijstrook op het baanvak.
 
 ### Player
 
-Om problemen te vermijden tussen de machine learning en de efffectieve applicatie, hebben we twee aparte speler objecten voorzien.
+Om problemen te vermijden tussen de machine learning en de effectieve applicatie, hebben we twee aparte speler objecten voorzien.
 
 #### VR Player
 
@@ -137,7 +143,7 @@ Voor deze speler maken we gebruik van een asset package. Deze voegen we toe aan 
 
 ![Ray Perception](images/objects/ml-player/perception2.png)
 
-Aan het model voegen we ook 3 ray perception sensors toe. Twee om rechtdoor te kijken, telkens op een andere hoogte, en een om naar beneden te kijken. De te detecteren tags zijn voor alle drie dezelfde: Car, Finish, Footpath, Crossing, Road en Grass. Alle sensoren hebben een breedte van 40 graden. Daarnaast hebben we voor elke sensor een aantal waarden veranderd, zodat alles goed detecteerbaar is.
+Aan het model voegen we ook 3 ray perception sensors toe. Twee om rechtdoor te kijken, telkens op een andere hoogte, en één om naar beneden te kijken. De te detecteren tags zijn voor alle drie hetzelfde: Car, Finish, Footpath, Crossing, Road en Grass. Alle sensoren hebben een breedte van 40 graden. Daarnaast hebben we voor elke sensor een aantal waarden veranderd, zodat alles goed detecteerbaar is.
 
 ### Zebrapad
 
@@ -384,7 +390,6 @@ public class Environment : MonoBehaviour
         if (_scoreboard != null && agent != null) _scoreboard.text = agent.GetCumulativeReward().ToString("f3");
     }
 
-
     /* Source:
      * - https://github.com/ddhaese/Project_ML-Agents_02/blob/master/Assets/Scripts/Environment.cs
      * - lines 31 to 37
@@ -444,7 +449,7 @@ public class Environment : MonoBehaviour
 }
 ```
 
-Environment is een beetje het "overzicht".
+Environment is een beetje het "overzicht". Deze is verantwoordelijk om de Environment te resetten en om de player op een random positie en met een random rotatie te spawnen.
 
 ### Spawnpoint
 ```csharp
@@ -727,50 +732,8 @@ Zo zal de speler kunnen leren omgaan met auto's die zoals in een echte verkeerss
 
 Indien we trainen met de auto zullen we de Player agent (Hieronder vermeld) ook nodig hebben aangezien ze in samenhang zullen trainen om zo de auto's te leren stoppen indien ze een speler detecteren.
 
-### Spawn Left & Spawn Right
-
-In de scene moeten ook zeker empty gameobjects toegevoegd worden genaamd: SpawnLeft en SpawnRight. 
-
-Dit zijn de locaties waar de auto's zullen spawnen en deze moeten zeker aan de jui
-### Player
-Indien de auto agents training nodig hebben zal u een player object in de scene kunnen steken die ervoor zorgt dat er een speler met een agent zal beginnen rondwandelen en trachten op zoek te gaan naar het oversteekpunt. Hier moet getracht worden eerst de player te trainen om efficient opzoek te gaan naar het oversteekpunt.
-
-## Verloop van de training
-Om de auto's op een goede manier te trainen hoe het verkeer in het echt zou lopen hebben we geopteerd om de speler ook een agent toe te kennnen tijdens de training.
-Dit zal ervoor zorgen dat wanneer we de training starten de auto's zullen leren om te gaan met een onvoorspelbare speler.
-
-Om de training te starten kan u in de projectmap een python of anaconda terminal opendoen en daarin zal u de volgende commands moeten invoeren.
-
-Indien u anaconda gebruikt zal u eerst de omgeving moeten aanzetten. Dit kan u doen door het commando:
-```
-conda activate <Naam ML agents environment>
-```
-Daarna kan u de training starten met het commando:
-```
-mlagents-learn YAML --run-id <Naam>
-```
-Indien u de resultaten van de training wilt bekijken al dan niet live kan u in een nieuwe terminal dit commando uitvoeren:
-```
-tensorboard --logdir results
-```
 
 
-In het volgende hoofdstuk zullen we meer uitbreiden over de resultaten die we hebben geobserveerd van onze training.
-## Resultaten training
-
-We hebben verschillende training rondes uitgevoerd, soms op verschillende machines. Hieronder zullen we de meest opvallende rondes tonen.
-
-
-
-### Run 2
-
-![Resultaten](images/training/02.png)
-
-Eerste run met degelijk duratie. Vrij saaie grafiek, gestopt met training nadat we besloten hadden om veranderingen te doen in het reward en het spawn systeem.
-
-### Run 3
-
-![Resultaten](images/training/03.png)
 
 Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het geval te zijn omwille van ontbrekende raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
 
@@ -821,6 +784,11 @@ Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wann
 
 Alsook hebben we een roadblock gehad dat de speler door het toevoegen van gravity begon te vliegen in de lucht tegenstrijdig met het toevoegen van gravity natuurlijk, na het verwijderen van gravity was dit opgelost.
 
+### Conclusie
+
+Voor dit project hebben we getracht een simulator te maken die het echte leven zo goed mogelijk nabootst.
+
+Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten van de trainingen zijn en dat we toch zeer veel 
 
 # Bronnen
 github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
