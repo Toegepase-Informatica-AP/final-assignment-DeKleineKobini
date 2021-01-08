@@ -1,5 +1,7 @@
 # Oversteek simulator
+
 ## Table of contents
+
 - [Oversteek simulator](#oversteek-simulator)
   - [Table of contents](#table-of-contents)
   - [Groepsleden](#groepsleden)
@@ -44,11 +46,12 @@
     - [Run 8](#run-8)
     - [Run 9](#run-9)
 - [Slotwoord](#slotwoord)
-    - [Roadblocks](#roadblocks)
-    - [Conclusie](#conclusie)
+  - [Roadblocks](#roadblocks)
+  - [Conclusie](#conclusie)
 - [Bronnen](#bronnen)
 
 ## Groepsleden
+
 | Naam                   | S-nummer |
 | ---------------------- | -------- |
 | Anne Toussaint         | s106511  |
@@ -58,6 +61,7 @@
 | Matthias Verschorren   | s103579  |
 
 ## Inleiding
+
 Voor het vak VR Experience kregen wij de opdracht om een applicatie te bedenken waarbij zowel Virtual Reality als machine learning een meerwaarde zal zijn.
 Hiervoor maken we gebruik van Unity.
 In dit document zal u een goede uitleg over het project krijgen, wat we hier allemaal in gedaan hebben en hoe alles in zijn werking gegaan is.
@@ -65,6 +69,7 @@ In dit document zal u een goede uitleg over het project krijgen, wat we hier all
 Alle code is ook te vinden op de [Github Repository](https://github.com/Toegepase-Informatica-AP/final-assignment-oversteek-simulator).
 
 ## Korte samenvatting
+
 Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kinderen zullen leren om veilig de straat over te steken.
 Het is de bedoeling dat ze leren hoe ze veilig kunnen oversteken, zonder enig gevaar.
 
@@ -93,22 +98,26 @@ Voor de Unity assets moet het volgende geïmporteerd worden:
 ![Unity asset oculus integration](images/installatie/oculus.png)
 
 ## Verloop simulatie
+
 Wanneer de simulatie start zal de speler een random positie en random rotatie toegekend krijgen.
 Op dit moment zullen er ook auto's beginnen verschijnen, die op de weg rijden.
 De auto's zullen in beide richtingen rijden.
+
 ## Observaties, acties en beloningen
 
 ### Beloning structuur
+
 Voor onze beloningen hebben we verschillende tabellen aangezien we met meerde AI agents zullen werken en hierdoor zal elke agent ook een specifieke reward structure hebben.
 
-| Agent                 | Rijdt tegen speler   | Komt op bestemming  | Rijdt te snel | Niet op bestemming | Raakt auto | Afstand tot bestemming | Op verboden locatie                 |
-| ---                   | ---                  | ---                 | ---           | ---                | ---        | ---                    | ---                                 |
-| Goede auto            | -1*                  | +1*                 | -0.1          | -0.001             | -0.8*      | NVT                    | NVT                                 |
-| Slechte auto          | -0.5*                | +1*                 | -0.1          | -0.002             | -0.8*      | NVT                    | NVT                                 |
-| Player                | NVT                  | +1*                 | NVT           | -0.001             | -1*        | variabel               | -0.0001 op gras, -0.0002 op de weg  |
+| Agent                 | Rijdt tegen speler    | Komt op bestemming    | Rijdt te snel | Niet op bestemming | Raakt auto   | Afstand tot bestemming | Op verboden locatie                 |
+| ---                   | ---                   | ---                   | ---           | ---                | ---          | ---                    | ---                                 |
+| Goede auto            | -1\*                  | +1\*                  | -0.1          | -0.001             | -0.8\*       | NVT                    | NVT                                 |
+| Slechte auto          | -0.5\*                | +1\*                  | -0.1          | -0.002             | -0.8\*       | NVT                    | NVT                                 |
+| Player                | NVT                   | +1\*                  | NVT           | -0.001             | -1*          | variabel               | -0.0001 op gras, -0.0002 op de weg  |
 | *Eindigd ook episode  |
 
 ## Beschrijving objecten
+
 ### Auto
 
 ![Model](images/objects/car/model.png)
@@ -133,7 +142,7 @@ Om ervoor te zorgen dat de auto objecten effectief kan zien werd er een ray perc
 
 ### Spawn Left & Spawn Right
 
-In de scene moeten ook zeker empty gameobjects toegevoegd worden genoemd: SpawnLeft en SpawnRight. 
+In de scene moeten ook zeker empty gameobjects toegevoegd worden genoemd: SpawnLeft en SpawnRight.
 
 Dit zijn de locaties waar de auto's zullen spawnen, deze empty gameobjects zullen het script Spawn Point moeten krijgen en hier zal zeker de juiste kant van de weg geselecteerd moeten worden. In het script kan u de Road Side kiezen, deze stelt u gewoon in op de kant van de weg waar het empty game object zich bevind.
 
@@ -207,7 +216,9 @@ De finish is een enorm simpel object met de Finish tag en een box collider.
 In deze foto kunnen we zien dat er een basisscene opgesteld is waarop we een oversteekpunt, voetgangerspad en een weg kunnen observeren. We hebben bewust gekozen om de scene basic te houden om zo meer op de functionaliteit te kunnen letten waardoor we meer vooruitgang konden boeken.
 
 ## Scripts
+
 ### Car
+
 ```csharp
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
@@ -289,6 +300,7 @@ public abstract class Car : Agent
 Car is de superklasse voor GoodCar en BadCar omdat veel van de logica hetzelfde is voor beide klasses. Car erft over van "Agent" omdat dit een AI-component is.
 
 ### Good car
+
 ```csharp
 using UnityEngine;
 
@@ -337,6 +349,7 @@ public class GoodCar : Car
 GoodCar erft over van Car. Hierin wordt de reward-logica uitgewerkt voor GoodCar.
 
 ### Bad car
+
 ```csharp
 using UnityEngine;
 
@@ -385,6 +398,7 @@ public class BadCar : Car
 BadCar erft over van Car. Ook hier wordt de reward-logica uitgewerkt, maar specifiek voor BadCar.
 
 ### Environment
+
 ```csharp
 using Assets.Scripts;
 using TMPro;
@@ -489,6 +503,7 @@ public class Environment : MonoBehaviour
 Environment is een beetje het "overzicht". Deze is verantwoordelijk om de Environment te resetten en om de player op een random positie en met een random rotatie te spawnen.
 
 ### Spawnpoint
+
 ```csharp
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -550,6 +565,7 @@ Om ervoor te zorgen dat de auto's blijven spawnen, gebruiken we dit script. Dit 
 Vanboven in dit script is er een enum "RoadSide". Dit gebruiken we om de auto's in de juiste richting te zetten.
 
 ### Player
+
 ```csharp
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
@@ -669,6 +685,7 @@ Om aanpassingen makkelijker uit te voeren, is de bewegings- en rotatiesnelheid b
 Player erft over van "Agent" omdat dit een AI-component is.
 
 ### Simple Player
+
 ```csharp
 using UnityEngine;
 
@@ -729,6 +746,7 @@ namespace Assets.Scripts
 Dit script is een simpelere versie van het player script. We gebruiken deze simpelere versie voor de VR speler, omdat de gebruikte VR component een deel van het player script afhandeld. Dit is geen ML agent. Verder is het script gelijk aan player.
 
 ### Transform Extensions
+
 ```C#
 using UnityEngine;
 
@@ -763,7 +781,9 @@ namespace Assets.Scripts
 Deze klasse voegt een transformmethode toe, waarmee een object gevonden kan worden in een hoofd object op basis van de tag van dat object.
 
 ## Beschrijving gedragingen objecten
+
 ### Auto
+
 Bij het gedrag van de auto zien we dat de auto's vooruit zullen rijden om zo aan hun gedesigneerde eindzone te geraken. Indien ze een speler klaar zien staan aan het voetpad zullen de auto's moeten stoppen om zo de speler over te laten.
 
 Echter hebben we er ook voor gezorgd dat we enkele auto's niet laten stoppen om zo het verkeer het beste te simuleren.
@@ -772,24 +792,31 @@ Zo zal de speler kunnen leren omgaan met auto's die zoals in een echte verkeerss
 Indien we trainen met de auto zullen we de Player agent (Hieronder vermeld) ook nodig hebben aangezien ze in samenhang zullen trainen om zo de auto's te leren stoppen indien ze een speler detecteren.
 
 ### Player
+
 Indien de auto agents training nodig hebben zal u een player object in de scene kunnen steken die ervoor zorgt dat er een speler met een agent zal beginnen rondwandelen en trachten op zoek te gaan naar het oversteekpunt. Hier moet getracht worden eerst de player te trainen om efficient opzoek te gaan naar het oversteekpunt.
 
 ## Verloop van de training
+
 Om de auto's op een goede manier te trainen hoe het verkeer in het echt zou lopen hebben we geopteerd om de speler ook een agent toe te kennnen tijdens de training.
 Dit zal ervoor zorgen dat wanneer we de training starten, de auto's zullen leren om te gaan met een onvoorspelbare speler.
 
 Om de training te starten kan u in de projectmap een python of anaconda terminal opendoen en daarin zal u de volgende commands moeten invoeren.
 
 Indien u anaconda gebruikt zal u eerst de omgeving moeten aanzetten. Dit kan u doen door het commando:
-```
+
+```bat
 conda activate <Naam ML agents environment>
 ```
+
 Daarna kan u de training starten met het commando:
-```
+
+```bat
 mlagents-learn YAML --run-id <Naam>
 ```
+
 Indien u de resultaten van de training wilt bekijken al dan niet live kan u in een nieuwe terminal dit commando uitvoeren:
-```
+
+```bat
 tensorboard --logdir results
 ```
 
@@ -869,7 +896,6 @@ Opzich was dit een degelijke run voor de speler, maar er waren nog een aantal pr
 | Oranje    | Good car       |  13H 56M 45S      |
 | Grijs     | Player         |  13H 56M 21S      |
 
-
 ![Resultaten A](images/training/09a.png)
 ![Resultaten B](images/training/09b.png)
 
@@ -889,14 +915,15 @@ Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de sp
 De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt, en steekt hij direct over, zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
 ```
 
-# Slotwoord
+## Slotwoord
+
 ### Roadblocks
 We hebben enkele roadblocks ervaren die we zeker moesten oplossen om zo het werkende te krijgen.
 Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wanneer de player aangereden werd tijdens training dat de score na het resetten van de environment nog meetelde waardoor de speler agent op een score van -1 begon.
 
 Alsook hebben we een roadblock gehad dat de speler door het toevoegen van gravity begon te vliegen in de lucht tegenstrijdig met het toevoegen van gravity natuurlijk, na het verwijderen van gravity was dit opgelost.
 
-Indien we een project van deze schaal in de toekomst zullen maken zullen we zeker moeten opletten dat we eerder beginnen trainen om zo fouten te herkennen die we mogelijks kunnen tegenkomen. 
+Indien we een project van deze schaal in de toekomst zullen maken zullen we zeker moeten opletten dat we eerder beginnen trainen om zo fouten te herkennen die we mogelijks kunnen tegenkomen.
 
 ### Conclusie
 
@@ -906,7 +933,7 @@ Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten
 
 We hebben opgemerkt dat dit type project veel meer tijd zou kosten dan we eigenlijk hadden. De trainingen die de players en de cars moeten doorgaan zijn lange trainingen, koppel dit met onze weinige ervaring met ml agents en unity dan word dit allemaal veel moeilijker.
 
-# Bronnen
+## Bronnen
 
 github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
 
