@@ -496,6 +496,7 @@ public enum RoadSide
     Right,
     Left
 }
+
 public class SpawnPoint : MonoBehaviour
 {
     private const float MIN_TIME_START = 0f;
@@ -512,6 +513,7 @@ public class SpawnPoint : MonoBehaviour
         environment = GetComponentInParent<Environment>();
 
         var randomTime = Random.Range(MIN_TIME_START, MAX_TIME_START);
+        // Source: https://forum.unity.com/threads/invokerepeating-random-interval.105107/ : BrinkHouseGames
         Invoke(nameof(Spawn), randomTime);
     }
 
@@ -896,9 +898,8 @@ Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten
 
 We hebben opgemerkt dat dit type project veel meer tijd zou kosten dan we eigenlijk hadden. De trainingen die de players en de cars moeten doorgaan zijn lange trainingen, koppel dit met onze weinige ervaring met ml agents en unity dan word dit allemaal veel moeilijker.
 
-
-
 # Bronnen
+
 github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
 
 BrinkHouseGames. (2013, Augustus 6). forum.unity.com. Opgehaald van InvokeRepeating Random Interval: https://forum.unity.com/threads/invokerepeating-random-interval.105107/
