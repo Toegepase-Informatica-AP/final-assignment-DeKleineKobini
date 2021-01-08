@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
+public enum RoadSide
+{
+    Right,
+    Left
+}
+
 public class SpawnPoint : MonoBehaviour
 {
     private const float MIN_TIME_START = 0f;
@@ -35,11 +41,11 @@ public class SpawnPoint : MonoBehaviour
         // Get the location of the spawn point.
         var location = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
 
-        // Create the new car.
+        // Create and spawn the new car.
         var car = Instantiate(prefab, location, orientation);
         car.transform.SetParent(environment.cars.transform, false);
 
-        // Actually spawn the car.
+        // Start a timer to spawn the next car.
         var randomTime = Random.Range(MIN_TIME, MAX_TIME);
         Invoke(nameof(Spawn), randomTime);
     }

@@ -4,11 +4,6 @@ using Unity.MLAgents;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum RoadSide
-{
-    Right,
-    Left
-}
 public class Environment : MonoBehaviour
 {
     private const float SPAWN_RANGE_X = 45;
