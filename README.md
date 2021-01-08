@@ -56,6 +56,8 @@ Voor het vak VR Experience kregen wij de opdracht om een applicatie te bedenken 
 Hiervoor maken we gebruik van Unity.
 In dit document zal u een goede uitleg over het project krijgen, wat we hier allemaal in gedaan hebben en hoe alles in zijn werking gegaan is.
 
+Alle code is ook te vinden op de [Github Repository](https://github.com/Toegepase-Informatica-AP/final-assignment-oversteek-simulator).
+
 ## Korte samenvatting
 Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kinderen zullen leren om veilig de straat over te steken.
 Het is de bedoeling dat ze leren hoe ze veilig kunnen oversteken, zonder enig gevaar.
