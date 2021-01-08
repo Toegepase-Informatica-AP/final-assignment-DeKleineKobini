@@ -793,9 +793,13 @@ We hebben verschillende training rondes uitgevoerd, soms op verschillende machin
 
 ![Resultaten](images/training/02.png)
 
-Eerste run met degelijk duratie. Vrij saaie grafiek. We zijn gestopt met training nadat we besloten hadden om veranderingen te doen in het reward- en het spawn systeem.
+Beide autos bereiken vrij snel een vlakte. GoodCar heeft nog wel een redelijk dip, maar bereikt snel terug de vlakte.
+
+We zijn gestopt met deze training nadat we besloten hadden om veranderingen te doen in het reward- en het spawn systeem.
 
 ### Run 3
+
+Na de tweede ronde hebben we de configuratie aangepast van `Oversteek-01.yml` naar `Oversteek-02.yml`. Er vanaf nu werden punten afgenomen voor rond te draaien en kon de speler ook op het zebrapad spawnen.
 
 ![Resultaten](images/training/03.png)
 
