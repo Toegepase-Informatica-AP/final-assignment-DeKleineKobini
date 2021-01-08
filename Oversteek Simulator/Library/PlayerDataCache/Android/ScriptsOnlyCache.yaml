@@ -1,8 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - Car
+    - Assets.Scripts.SimplePlayer
+    - BadCar
     - Environment
+    - GoodCar
     - ONSPSettings
     - OvrAvatar
     - OvrAvatarLocalDriver
@@ -19,10 +21,20 @@ ScriptsOnlyBuild:
     - OVRPlayerController
     - OVRSceneSampleController
     - OVRScreenFade
+    Unity.Barracuda.dll:
+    - Unity.Barracuda.NNModel
+    - Unity.Barracuda.NNModelData
     Unity.ML-Agents.dll:
+    - Unity.MLAgents.DecisionRequester
     - Unity.MLAgents.Policies.BehaviorParameters
+    - Unity.MLAgents.Sensors.RayPerceptionSensorComponent3D
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     Unity.XR.Management.Editor.dll:
     - UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget
     Unity.XR.Management.dll:
@@ -35,8 +47,11 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
   sceneClasses:
-    Assets/Scenes/MainScene.unity:
+    Assets/Scenes/VRScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -55,6 +70,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
     - Class: 64
@@ -67,51 +84,71 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
-    - Class: 90
-      Script: {instanceID: 0}
-    - Class: 95
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11562}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 11776}
+      Script: {instanceID: 11806}
     - Class: 114
-      Script: {instanceID: 12058}
+      Script: {instanceID: 11854}
     - Class: 114
-      Script: {instanceID: 12212}
+      Script: {instanceID: 12032}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12090}
     - Class: 114
-      Script: {instanceID: 12584}
+      Script: {instanceID: 12244}
     - Class: 114
-      Script: {instanceID: 12802}
+      Script: {instanceID: 12558}
     - Class: 114
-      Script: {instanceID: 12872}
+      Script: {instanceID: 12614}
     - Class: 114
-      Script: {instanceID: 13082}
+      Script: {instanceID: 12704}
     - Class: 114
-      Script: {instanceID: 13280}
+      Script: {instanceID: 12776}
     - Class: 114
-      Script: {instanceID: 13984}
+      Script: {instanceID: 12902}
     - Class: 114
-      Script: {instanceID: 14038}
+      Script: {instanceID: 13112}
     - Class: 114
-      Script: {instanceID: 14222}
+      Script: {instanceID: 13290}
     - Class: 114
-      Script: {instanceID: 14606}
+      Script: {instanceID: 13310}
     - Class: 114
-      Script: {instanceID: 14704}
+      Script: {instanceID: 13386}
     - Class: 114
-      Script: {instanceID: 14954}
+      Script: {instanceID: 13674}
     - Class: 114
-      Script: {instanceID: 14964}
+      Script: {instanceID: 14014}
+    - Class: 114
+      Script: {instanceID: 14046}
+    - Class: 114
+      Script: {instanceID: 14064}
+    - Class: 114
+      Script: {instanceID: 14068}
+    - Class: 114
+      Script: {instanceID: 14252}
+    - Class: 114
+      Script: {instanceID: 14448}
+    - Class: 114
+      Script: {instanceID: 14640}
+    - Class: 114
+      Script: {instanceID: 14738}
+    - Class: 114
+      Script: {instanceID: 14870}
+    - Class: 114
+      Script: {instanceID: 14892}
+    - Class: 114
+      Script: {instanceID: 14990}
+    - Class: 114
+      Script: {instanceID: 15000}
+    - Class: 114
+      Script: {instanceID: 15298}
     - Class: 115
       Script: {instanceID: 0}
-    - Class: 137
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
@@ -286,7 +323,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 73543240b53d978fb572bf058528ae0e
+      Hash: c3fcee24c5c4176db995f31aee9fecf9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -338,6 +375,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Scrollbar
+  - hash:
+      serializedVersion: 2
+      Hash: ac1ff1d1ae50e47c0364e609fca8763f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BadCar
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -568,12 +611,6 @@ ScriptsOnlyBuild:
     className: TransitionArmModel
   - hash:
       serializedVersion: 2
-      Hash: 38d92f187687c32481891b54f823f3b7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CarController
-  - hash:
-      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -758,12 +795,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Selectable
-  - hash:
-      serializedVersion: 2
-      Hash: 73543240b53d978fb572bf058528ae0e
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Car
   - hash:
       serializedVersion: 2
       Hash: 6ed0a296f1f1c9a2b22c6f8e635be7c9
@@ -1474,6 +1505,12 @@ ScriptsOnlyBuild:
     className: DemonstrationSummary
   - hash:
       serializedVersion: 2
+      Hash: f330e8e314b68adb3a331d6880acc122
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Assets.Scripts
+    className: SimplePlayer
+  - hash:
+      serializedVersion: 2
       Hash: 6939772cb3ce775a8e8d99f332534491
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1606,6 +1643,12 @@ ScriptsOnlyBuild:
     className: ONSPPropagationGeometry
   - hash:
       serializedVersion: 2
+      Hash: ac1ff1d1ae50e47c0364e609fca8763f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GoodCar
+  - hash:
+      serializedVersion: 2
       Hash: 0498232dd48b097128db9129acff161b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1630,13 +1673,13 @@ ScriptsOnlyBuild:
     className: VREyeRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 630393e9e6e0c1880dd0a0328c87ef3b
+      Hash: ed41ee7102581a606df517552f8e28ae
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Environment
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 24eaddde855ea5ee5ff89a12753a367d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnPoint
@@ -1852,6 +1895,6 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
-  - Assets/Scenes/MainScene.unity
+  - Assets/Scenes/VRScene.unity
   playerPath: D:/Libaries/MEGASync/School/Workspace/Unity/final-assignment-oversteek-simulator/Oversteek
-    Simulator/Build/app.apk
+    Simulator/Build/Prototype1.apk

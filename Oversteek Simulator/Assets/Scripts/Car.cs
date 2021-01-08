@@ -1,5 +1,4 @@
-﻿using System;
-using Unity.MLAgents;
+﻿using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
@@ -7,13 +6,14 @@ public abstract class Car : Agent
 {
     public float maxSpeed = 50f;
 
-    internal Rigidbody rb;
+    internal Rigidbody body;
     internal Environment environment;
 
     public override void Initialize()
     {
         base.Initialize();
-        rb = GetComponent<Rigidbody>();
+        environment = GetComponentInParent<Environment>();
+        body = GetComponent<Rigidbody>();
 
         InvokeRepeating(nameof(AddNotOnDestinationReward), 0, 1.0f);
         InvokeRepeating(nameof(AddMovesTooFastReward), 0, 1.0f);
@@ -21,53 +21,55 @@ public abstract class Car : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.localPosition); // 3 observations
+        // Add current position as observation.
+        // 3 observations
+        sensor.AddObservation(transform.localPosition);
 
-        sensor.AddObservation(rb.velocity.x); // 1 observation
+        // Add current speed as observation.
+        // 1 observation
+        sensor.AddObservation(body.velocity.x);
 
-        // total: 4 observations
+        // Total = 4 observations
     }
-
-    public abstract void AddNotOnDestinationReward();
-
-    public abstract void AddMovesTooFastReward();
 
     public override void Heuristic(float[] actionsOut)
     {
-        actionsOut[0] = 0f; // don't move
-
-        if (Input.GetKey(KeyCode.UpArrow)) // go forward
-        {
+        // Check for input.
+        if (Input.GetKey(KeyCode.UpArrow))
             actionsOut[0] = 1f;
-        }
-        if (Input.GetKey(KeyCode.DownArrow)) // stop
-        {
+        else if (Input.GetKey(KeyCode.DownArrow))
             actionsOut[0] = -1f;
-        }
+        else
+            actionsOut[0] = 0f;
+
     }
 
     public override void OnActionReceived(float[] vectorAction)
     {
+        // Apply movement.
         if (vectorAction[0] == 1)
-        {
-            Move();
-        }
-
-        if (vectorAction[0] == -1)
-        {
-            Stop();
-        }
-    }
-
-    public void Move()
-    {
-        rb.AddForce(transform.forward * maxSpeed, ForceMode.Acceleration);
-    }
-
-    public void Stop()
-    {
-        rb.AddForce(-0.8f * rb.velocity);
+            body.AddForce(transform.forward * maxSpeed, ForceMode.Acceleration);
+        else if (vectorAction[0] == -1)
+            body.AddForce(-0.8f * body.velocity);
     }
 
     public abstract void OnCollisionEnter(Collision other);
+
+    /// <summary>
+    /// Update environment variable based on the current parent.
+    /// </summary>
+    internal void UpdateEnvironment()
+    {
+        if (environment == null) environment = GetComponentInParent<Environment>();
+    }
+
+    /// <summary>
+    /// Reward logic for not being on location yet.
+    /// </summary>
+    internal abstract void AddNotOnDestinationReward();
+
+    /// <summary>
+    /// Reward logic for moving too fast.
+    /// </summary>
+    internal abstract void AddMovesTooFastReward();
 }
