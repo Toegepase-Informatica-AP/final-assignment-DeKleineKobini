@@ -922,7 +922,8 @@ Alsook hebben we een roadblock gehad dat de speler, door het toevoegen van gravi
 
 Indien we een project van deze schaal in de toekomst zullen maken zullen we zeker moeten opletten dat we eerder beginnen trainen om zo fouten te herkennen die we mogelijks kunnen tegenkomen.
 
-# Slotwoord
+## Slotwoord
+
 ### Conclusie
 
 Voor dit project hebben we getracht een simulator te maken die het echte leven zo goed mogelijk nabootst.
