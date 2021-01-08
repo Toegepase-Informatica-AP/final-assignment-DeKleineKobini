@@ -118,18 +118,18 @@ Zelf voegen we nog een rigidbody toe om beweging toe te voegen. Hierbij zetten w
 
 ![Rigidbody](images/objects/ml-player/rigidbody.png)
 
-Ons hoofdobject heeft zelf geen vorm. Het heeft enkel componenten en de Player tag. We voegen een rigidbody toe, ook weer zonder gravity en zetten we de rotatie volledig uit. Voor de gewone beweging zetten we enkel de Y coordinaat uit, zodat we niet door muren kunnen gaan.
+Ons hoofdobject heeft zelf geen vorm. Het heeft enkel componenten en de Player tag. We voegen een rigidbody toe, ook weer zonder gravity en zetten we de rotatie volledig uit. Voor de gewone beweging zetten we enkel de Y coördinaat uit, zodat we niet door muren kunnen gaan.
 Ook voegen we een box collider toe, om ervoor te zorgen dat we aanrakingen kunnen detecteren.
 
 ![ML Behaviour](images/objects/ml-player/behaviour.png)
 
-De speler heeft 1 observatie en 2 soorten acties, met telkens 2 waarden. Om de speler niet te lang te laten rondlopen, stellen we een limiet van 50.000 stappen op. Ook hier is een decesion requester nodig voor manuele beweging.
+De speler heeft één observatie en twee soorten acties, met telkens twee waarden. Om de speler niet te lang te laten rondlopen, stellen we een limiet van 50.000 stappen op. Ook hier is een decision requester nodig voor manuele beweging.
 
 ![Model](images/objects/ml-player/model.png)
 
 ![Transform](images/objects/ml-player/model_transform.png)
 
-Voor deze speler maken gebruik van een asset package. Deze voegen we toe aan ons hoofd object en vergroten we met 1.5.
+Voor deze speler maken we gebruik van een asset package. Deze voegen we toe aan ons hoofd object en vergroten we met 1.5.
 
 ![Ray Perception](images/objects/ml-player/perception1.png)
 
@@ -289,6 +289,8 @@ public class GoodCar : Car
 }
 ```
 
+GoodCar erft over van Car. Hierin wordt de reward-logica uitgewerkt voor GoodCar.
+
 ### Bad car
 ```csharp
 using UnityEngine;
@@ -334,6 +336,8 @@ public class BadCar : Car
     }
 }
 ```
+
+BadCar erft over van Car. Ook hier wordt de reward-logica uitgewerkt, maar BadCar.
 
 ### Environment
 ```csharp
@@ -438,7 +442,7 @@ public class Environment : MonoBehaviour
 }
 ```
 
- 
+
 
 ### Spawnpoint
 ```csharp
@@ -719,7 +723,12 @@ Zo zal de speler kunnen leren omgaan met auto's die zoals in een echte verkeerss
 
 Indien we trainen met de auto zullen we de Player agent (Hieronder vermeld) ook nodig hebben aangezien ze in samenhang zullen trainen om zo de auto's te leren stoppen indien ze een speler detecteren.
 
-### Player
+### Spawn Left & Spawn Right
+
+In de scene moeten ook zeker empty gameobjects toegevoegd worden genaamd: SpawnLeft en SpawnRight. 
+
+Dit zijn de locaties waar de auto's zullen spawnen en deze moeten zeker aan de jui
+ten van de scene geplaatst worden. ### Player
 Indien de auto agents training nodig hebben zal u een player object in de scene kunnen steken die ervoor zorgt dat er een speler met een agent zal beginnen rondwandelen en trachten op zoek te gaan naar het oversteekpunt. Hier moet getracht worden eerst de player te trainen om efficient opzoek te gaan naar het oversteekpunt.
 
 ## Verloop van de training
