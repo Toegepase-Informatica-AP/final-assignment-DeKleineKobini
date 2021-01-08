@@ -1,27 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GoodCar : Car
 {
-    public override void AddNotOnDestinationReward()
-    {
-        AddReward(-0.001f);
-    }
-
-    public override void AddMovesTooFastReward()
-    {
-        if (environment == null)
-        {
-            environment = GetComponentInParent<Environment>();
-        }
-
-        if (environment != null && rb.velocity.x > environment.maxSpeed)
-        {
-            AddReward(-0.1f);
-        }
-    }
-
     public override void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerController"))
@@ -42,6 +22,21 @@ public class GoodCar : Car
             Destroy(other.gameObject);
             Destroy(this.gameObject);
             EndEpisode();
+        }
+    }
+
+    internal override void AddNotOnDestinationReward()
+    {
+        AddReward(-0.001f);
+    }
+
+    internal override void AddMovesTooFastReward()
+    {
+        UpdateEnvironment();
+
+        if (environment != null && body.velocity.x > environment.maxSpeed)
+        {
+            AddReward(-0.1f);
         }
     }
 }

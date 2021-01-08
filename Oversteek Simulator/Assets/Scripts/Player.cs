@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.MLAgents;
+﻿using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
@@ -13,78 +9,73 @@ public class Player : Agent
     private float rewardFactor = 0.001f;
 
     private Environment environment;
-    private CharacterController controller;
     private GameObject finish;
-    private Rigidbody rb;
+    private Rigidbody body;
     private bool isMoving = false;
 
     public override void Initialize()
     {
         base.Initialize();
         environment = GetComponentInParent<Environment>();
-        controller = GetComponent<CharacterController>();
-        rb = GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody>();
         finish = environment.finish;
     }
 
     public override void OnEpisodeBegin()
     {
-        rb.velocity = new Vector3(0, 0, 0);
+        body.velocity = new Vector3(0, 0, 0);
         environment.ResetEnvironment();
     }
 
     private void FixedUpdate()
     {
+        // Add a reward based on the distance to the finish.
         float distance = Vector3.Distance(transform.localPosition, finish.transform.localPosition);
-
         if (distance < 25 && isMoving)
         {
-            AddReward(rewardFactor/distance);
+            AddReward(rewardFactor / distance);
         }
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        // Add distance to the finish as observation.
         float distance = Vector3.Distance(transform.localPosition, finish.transform.localPosition);
-        
-        sensor.AddObservation(distance); // 1 observation
+        sensor.AddObservation(distance);
     }
 
     public override void Heuristic(float[] actionsOut)
     {
-        actionsOut[0] = 0f;
-        actionsOut[1] = 0f;
-
+        // Check for forward input.
         if (Input.GetKey(KeyCode.W))
-        {
             actionsOut[0] = 1f;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            actionsOut[1] = 1f;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            actionsOut[1] = 2f;
-        }
+        else
+            actionsOut[0] = 0f;
 
+        // Check for rotation input.
+        if (Input.GetKey(KeyCode.LeftArrow))
+            actionsOut[1] = 1f;
+        else if (Input.GetKey(KeyCode.RightArrow))
+            actionsOut[1] = 2f;
+        else
+            actionsOut[1] = 0f;
     }
 
     public override void OnActionReceived(float[] vectorAction)
     {
         isMoving = false;
+
+        // Apply forward movement.
         if (vectorAction[0] != 0)
         {
             transform.position += transform.forward * movementSpeed * Time.deltaTime * 2;
             isMoving = true;
         }
 
+        // Apply rotation change.
         if (vectorAction[1] != 0)
-        {
             transform.Rotate(0, rotationSpeed * (vectorAction[1] * 2 - 3) * Time.deltaTime, 0);
-        }
     }
-
 
     public void OnTriggerEnter(Collider collision)
     {
