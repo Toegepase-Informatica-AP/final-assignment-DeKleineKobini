@@ -765,7 +765,7 @@ Indien de auto agents training nodig hebben zal u een player object in de scene 
 
 ## Verloop van de training
 Om de auto's op een goede manier te trainen hoe het verkeer in het echt zou lopen hebben we geopteerd om de speler ook een agent toe te kennnen tijdens de training.
-Dit zal ervoor zorgen dat wanneer we de training starten de auto's zullen leren om te gaan met een onvoorspelbare speler.
+Dit zal ervoor zorgen dat wanneer we de training starten, de auto's zullen leren om te gaan met een onvoorspelbare speler.
 
 Om de training te starten kan u in de projectmap een python of anaconda terminal opendoen en daarin zal u de volgende commands moeten invoeren.
 
@@ -782,7 +782,7 @@ Indien u de resultaten van de training wilt bekijken al dan niet live kan u in e
 tensorboard --logdir results
 ```
 
-In het volgende hoofdstuk zullen we meer uitbreiden over de resultaten die we hebben geobserveerd van onze training.
+In het volgende hoofdstuk zal meer uitleg volgen over de resultaten van onze trainingen en observaties.
 
 ## Resultaten training
 
@@ -792,7 +792,7 @@ We hebben verschillende training rondes uitgevoerd, soms op verschillende machin
 
 ![Resultaten](images/training/02.png)
 
-Eerste run met degelijk duratie. Vrij saaie grafiek, gestopt met training nadat we besloten hadden om veranderingen te doen in het reward en het spawn systeem.
+Eerste run met degelijk duratie. Vrij saaie grafiek. We zijn gestopt met training nadat we besloten hadden om veranderingen te doen in het reward- en het spawn systeem.
 
 ### Run 3
 
@@ -809,7 +809,7 @@ Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het ge
 
 ![Resultaten](images/training/08.png)
 
-Opzich was dit een degelijke run voor de speler, maar er waren nog een aantal problemen. Het voornaamste probleem was het feit dat de speler gewoon overstak, zonder rekening te houden met het zebrapad, en ook niet rondkeek. De auto's wouden nooit remmen voor de speler, waardoor de resultaten ook niet goed zijn voor deze.
+Opzich was dit een degelijke run voor de speler, maar er waren nog een aantal problemen. Het voornaamste probleem was het feit dat de speler gewoon overstak, zonder rekening te houden met het zebrapad en ook niet rondkeek. De auto's remden niet voor de speler. Hierdoor waren de resultaten hiervan ook niet goed.
 
 ### Run 9
 
