@@ -62,6 +62,8 @@ Voor het vak VR Experience kregen wij de opdracht om een applicatie te bedenken 
 Hiervoor maken we gebruik van Unity.
 In dit document zal u een goede uitleg over het project krijgen, wat we hier allemaal in gedaan hebben en hoe alles in zijn werking gegaan is.
 
+Alle code is ook te vinden op de [Github Repository](https://github.com/Toegepase-Informatica-AP/final-assignment-oversteek-simulator).
+
 ## Korte samenvatting
 Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kinderen zullen leren om veilig de straat over te steken.
 Het is de bedoeling dat ze leren hoe ze veilig kunnen oversteken, zonder enig gevaar.
@@ -833,13 +835,19 @@ We hebben verschillende training rondes uitgevoerd, soms op verschillende machin
 
 ![Resultaten](images/training/02.png)
 
-Eerste run met degelijk duratie. Vrij saaie grafiek. We zijn gestopt met training nadat we besloten hadden om veranderingen te doen in het reward- en het spawn systeem.
+Beide autos bereiken vrij snel een vlakte. GoodCar heeft nog wel een redelijk dip, maar bereikt snel terug de vlakte.
+
+We zijn gestopt met deze training nadat we besloten hadden om veranderingen te doen in het reward- en het spawn systeem.
 
 ### Run 3
 
+Na de tweede ronde hebben we de configuratie aangepast van `Oversteek-01.yml` naar `Oversteek-02.yml`. Vanaf deze ronde werden punten afgenomen voor rond te draaien en kon de speler ook op het zebrapad spawnen.
+
 ![Resultaten](images/training/03.png)
 
-Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het geval te zijn omwille van ontbrekende raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
+De resultaten van de speler fluctueren enorm, maar de vlakkere delen hebben wel een duidelijk hogere score uiteindelijk. Beide autos hebben een gelijkwaardige grafiek, waarbij beiden vrij snel stabiel zijn.
+
+We zijn deze training gestopt omdat we een fout hadden ontdekt, er ontbraken heel wat raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
 
 ### Run 4
 
@@ -865,20 +873,20 @@ Opzich was dit een degelijke run voor de speler, maar er waren nog een aantal pr
 ![Resultaten A](images/training/09a.png)
 ![Resultaten B](images/training/09b.png)
 
-Bij deze trainingset hebben we opgemerkt dat de auto's zowel de `Good car` als `Bad car` veel te snel reden dan ze mochten rijden. Hierdoor is de curve van de auto reward redelijk eentonig aangezien de auto's altijd aan hetzelfde tempo naar de eindmeet reden.
+Bij deze trainingset hebben we opgemerkt dat zowel de `Good car` als `Bad car` veel sneller reden dan ze mochten rijden. De curve van de auto reward waren ook redelijk eentonig.
 
-Bij de `Player` zien we echter dat deze curve veel meer fluctuatie heeft.
+Bij de `Player` zien we echter dat deze curve veel meer fluctuatie heeft. De curve gaat, ondanks de fluctuaties, steeds iets naar boven. De fluctuaties blijven wel geregeld terugkomen.
 
 Tijdens de training hebben we hier geobserveerd dat indien de `Player` dicht genoeg bij de finish spawnt dat na een bepaalde duur training de speler hier wel zich naartoe begeeft, echter zien we wel dat de `Player` niet altijd het oversteekpunt neemt en dus gewoon over de weg zich begeeft. Ook probeert de `Player` auto's te vermijden.
 
-Indien de `Player` te ver spawned dan merken we op dat de speler cirkels begint te draaien. Momenteel is hier nog geen oplossing voor gevonden en zal de `Player` vaak niet over de eindmeet geraken.
+Indien de `Player` te ver spawned, merken we op dat de speler cirkels begint te draaien. Momenteel is hier nog geen oplossing voor gevonden en zal de `Player` vaak niet over de eindmeet geraken.
 
 De dieptepunten die u op de grijze lijn kan zien is dus het moment dat hierboven besproken werd waar de `Player` rond zat te draaien.
 
 ```kobe
-Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de speler redelijk hard aangepast en toch ook nog wat reward aanpassingen. Uiteindelijk is ook deze training niet echt een succes. Omdat de speler slecht leert, hebben de auto's ook niet veel om te leren.
+Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de speler redelijk hard aangepast en toch ook nog wat reward aanpassingen aangebracht. Uiteindelijk is ook deze training niet echt een succes. Aangezien de speler slecht leert, hebben de auto's ook niet veel om te leren.
 
-De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt, en steekt hij direct over, zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
+De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt en steekt hij direct over zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
 ```
 
 ## Slotwoord
