@@ -42,11 +42,10 @@
   - [Resultaten training](#resultaten-training)
     - [Run 2](#run-2)
     - [Run 3](#run-3)
-    - [Run 4](#run-4)
     - [Run 8](#run-8)
     - [Run 9](#run-9)
+  - [Roadblocks](#roadblocks)
   - [Slotwoord](#slotwoord)
-    - [Roadblocks](#roadblocks)
     - [Conclusie](#conclusie)
   - [Bronnen](#bronnen)
 
@@ -875,12 +874,6 @@ Na de tweede ronde hebben we de configuratie aangepast van `Oversteek-01.yml` na
 De resultaten van de speler fluctueren enorm, maar de vlakkere delen hebben wel een duidelijk hogere score uiteindelijk. Beide autos hebben een gelijkwaardige grafiek, waarbij beiden vrij snel stabiel zijn.
 
 We zijn deze training gestopt omdat we een fout hadden ontdekt, er ontbraken heel wat raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
-
-### Run 4
-
-![Resultaten](images/training/04.png)
-
--- TBD
 
 ### Run 8
 
