@@ -34,9 +34,9 @@
   - [One-pager](#one-pager)
     - [Spelverloop](#spelverloop)
     - [Meerwaarde](#meerwaarde)
-  - [Veranderingen ten opzichte van de one-pager](#veranderingen-ten-opzichte-van-de-one-pager)
     - [Interactie](#interactie)
     - [Kwadrant](#kwadrant)
+  - [Veranderingen ten opzichte van de one-pager](#veranderingen-ten-opzichte-van-de-one-pager)
   - [Resultaten training](#resultaten-training)
     - [Run 2](#run-2)
     - [Run 3](#run-3)
@@ -805,14 +805,6 @@ De auto’s een brein geven, heeft volgens ons een meerwaarde omdat we willen da
 
 Als type AI-agent dachten we om een *Simultaneous Single-Agent* te gebruiken, omdat we willen dat er meerdere auto’s kunnen rijden.
 
-## Veranderingen ten opzichte van de one-pager
-
-Doorheen ons project zijn er een aantal plannen veranderd:
-
-- De speler is ook een AI-component geworden. Dit hebben we gedaan om zo een realistischere speler te simuleren.
-- De auto kan ook andere auto's zien.
-- Het type AI-agent is veranderd van *Simultaneous Single-Agent* naar een *Ecosystem*.
-
 ### Interactie
 
 - Auto (agent) kan de speler niet zien en botst tegen de speler.
@@ -822,6 +814,14 @@ Doorheen ons project zijn er een aantal plannen veranderd:
 ### Kwadrant
 
 ![Kwadrant One-pager](images/kwadrant.png)
+
+## Veranderingen ten opzichte van de one-pager
+
+Doorheen ons project zijn er een aantal plannen veranderd:
+
+- De speler is ook een AI-component geworden. Dit hebben we gedaan om zo een realistischere speler te simuleren.
+- De auto kan ook andere auto's zien.
+- Het type AI-agent is veranderd van *Simultaneous Single-Agent* naar een *Ecosystem*.
 
 ## Resultaten training
 
