@@ -888,16 +888,15 @@ Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de sp
 
 De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt en steekt hij direct over zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
 ```
-
-# Slotwoord
-### Roadblocks
-We hebben enkele roadblocks ervaren die we zeker moesten oplossen om zo het werkende te krijgen.
+# Roadblocks
+We hebben enkele roadblocks ervaren die we zeker moesten oplossen om zo de applicatie iets of wat werkende te krijgen.
 Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wanneer de player aangereden werd tijdens training dat de score na het resetten van de environment nog meetelde waardoor de speler agent op een score van -1 begon.
 
-Alsook hebben we een roadblock gehad dat de speler door het toevoegen van gravity begon te vliegen in de lucht tegenstrijdig met het toevoegen van gravity natuurlijk, na het verwijderen van gravity was dit opgelost.
+Alsook hebben we een roadblock gehad dat de speler, door het toevoegen van gravity, begon te vliegen in de lucht. Natuurlijk tegenstrijdig met het toevoegen van gravity, maar na het verwijderen van gravity was dit opgelost.
 
-Indien we een project van deze schaal in de toekomst zullen maken zullen we zeker moeten opletten dat we eerder beginnen trainen om zo fouten te herkennen die we mogelijks kunnen tegenkomen. 
+Indien we een project van deze schaal in de toekomst zullen maken, zullen we zeker moeten opletten dat we eerder beginnen trainen om zo vroeger de fouten te herkennen die we mogelijks kunnen tegenkomen. 
 
+# Slotwoord
 ### Conclusie
 
 Voor dit project hebben we getracht een simulator te maken die het echte leven zo goed mogelijk nabootst.
