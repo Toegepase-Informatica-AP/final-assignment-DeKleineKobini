@@ -161,30 +161,285 @@ In deze foto kunnen we zien dat er een basisscene opgesteld is waarop we een ove
 
 ## Scripts
 ### Car
-```C#
-
+```csharp
 ```
+
 ### Good car
-```C#
-
+```csharp
 ```
+
 ### Bad car
-```C#
-
+```csharp
 ```
+
 ### Environment
-```C#
+```csharp
 ```
-### Spawnpoint
-```C#
-```
-### Player trigger
-```C#
-```
-### Player
-```C#
 
+### Spawnpoint
+```csharp
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+public class SpawnPoint : MonoBehaviour
+{
+    private const float MIN_TIME_START = 0f;
+    private const float MAX_TIME_START = 5f;
+    private const float MIN_TIME = 2f;
+    private const float MAX_TIME = 20f;
+
+    public RoadSide roadSide;
+
+    private Environment environment;
+
+    private void Start()
+    {
+        environment = GetComponentInParent<Environment>();
+
+        var randomTime = Random.Range(MIN_TIME_START, MAX_TIME_START);
+        Invoke(nameof(Spawn), randomTime);
+    }
+
+    /// <summary>
+    /// Spawn a new car. Self-invoking method.
+    /// </summary>
+    public void Spawn()
+    {
+        if (environment == null) environment = GetComponentInParent<Environment>();
+
+        // Decide which car to spawn
+        int randomNumber = Random.Range(0, 3);
+        var prefab = randomNumber == 0 ? environment.badCar.gameObject : environment.goodCar.gameObject;
+        // Set the right orientation.
+        var orientation = Quaternion.Euler(0, roadSide == RoadSide.Left ? 270 : 90, 0);
+        // Get the location of the spawn point.
+        var location = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+
+        // Create and spawn the new car.
+        var car = Instantiate(prefab, location, orientation);
+        car.transform.SetParent(environment.cars.transform, false);
+
+        // Start a timer to spawn the next car.
+        var randomTime = Random.Range(MIN_TIME, MAX_TIME);
+        Invoke(nameof(Spawn), randomTime);
+    }
+}
 ```
+
+Om ervoor te zorgen dat de autos blijven spawnen, gebruiken we dit script. Dit script gebruikt een 'self-invoking' method, dit betekend dat eenmaal deze methode is aangeroepen, deze aangeroepen zal blijven worden.
+
+Aangezien autos langs beide kanten kunnen komen, is er een parameter om de juiste richting aan te duiden.
+
+### Player
+```csharp
+using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
+using UnityEngine;
+
+public class Player : Agent
+{
+    public float movementSpeed = 1;
+    public float rotationSpeed = 300;
+    private float rewardFactor = 0.001f;
+
+    private Environment environment;
+    private GameObject finish;
+    private Rigidbody body;
+    private bool isMoving = false;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        environment = GetComponentInParent<Environment>();
+        body = GetComponent<Rigidbody>();
+        finish = environment.finish;
+    }
+
+    public override void OnEpisodeBegin()
+    {
+        body.velocity = new Vector3(0, 0, 0);
+        environment.ResetEnvironment();
+    }
+
+    private void FixedUpdate()
+    {
+        // Add a reward based on the distance to the finish.
+        float distance = Vector3.Distance(transform.localPosition, finish.transform.localPosition);
+        if (distance < 25 && isMoving)
+        {
+            AddReward(rewardFactor / distance);
+        }
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        // Add distance to the finish as observation.
+        float distance = Vector3.Distance(transform.localPosition, finish.transform.localPosition);
+        sensor.AddObservation(distance);
+    }
+
+    public override void Heuristic(float[] actionsOut)
+    {
+        // Check for forward input.
+        if (Input.GetKey(KeyCode.W))
+            actionsOut[0] = 1f;
+        else
+            actionsOut[0] = 0f;
+
+        // Check for rotation input.
+        if (Input.GetKey(KeyCode.LeftArrow))
+            actionsOut[1] = 1f;
+        else if (Input.GetKey(KeyCode.RightArrow))
+            actionsOut[1] = 2f;
+        else
+            actionsOut[1] = 0f;
+    }
+
+    public override void OnActionReceived(float[] vectorAction)
+    {
+        isMoving = false;
+
+        // Apply forward movement.
+        if (vectorAction[0] != 0)
+        {
+            transform.position += transform.forward * movementSpeed * Time.deltaTime * 2;
+            isMoving = true;
+        }
+
+        // Apply rotation change.
+        if (vectorAction[1] != 0)
+            transform.Rotate(0, rotationSpeed * (vectorAction[1] * 2 - 3) * Time.deltaTime, 0);
+    }
+
+    public void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Finish"))
+        {
+            AddReward(1);
+            EndEpisode();
+        }
+    }
+
+    public void OnTriggerStay(Collider collision)
+    {
+        if (collision.CompareTag("Grass"))
+        {
+            AddReward(-0.0001f);
+        }
+        else if (collision.CompareTag("Road"))
+        {
+            AddReward(-0.0002f);
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Car"))
+        {
+            AddReward(-1);
+            EndEpisode();
+        }
+    }
+}
+```
+
+Het player script verzorgt een groot deel van de applicatie. Buiten dat hier het reward systeem, en de eigenlijke agent in zitten, zorgt dit script ook dat op het einde van een sessie, alles gereset wordt. Ook zit hier de beweging in voor de speler.
+
+Om aanpassingen makkelijker uit te voeren, is de bewegings- en rotatiesnelheid beschikbaar als parameter.
+
+### Simple Player
+```csharp
+using UnityEngine;
+
+namespace Assets.Scripts
+{
+    public class SimplePlayer : MonoBehaviour
+    {
+        public float movementSpeed = 1;
+        public float rotationSpeed = 300;
+
+        private Environment environment;
+        private Rigidbody body;
+
+        private void Start()
+        {
+            environment = GetComponentInParent<Environment>();
+            body = GetComponent<Rigidbody>();
+        }
+
+        public void Update()
+        {
+            // Check for forward input.
+            if (Input.GetKey(KeyCode.W))
+                transform.position += transform.forward * movementSpeed * Time.deltaTime * 2;
+
+            // Check for rotation input.
+            if (Input.GetKey(KeyCode.LeftArrow))
+                transform.Rotate(0, rotationSpeed * Time.deltaTime * -1, 0);
+            else if (Input.GetKey(KeyCode.RightArrow))
+                transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+        }
+
+        public void OnTriggerEnter(Collider collision)
+        {
+            if (collision.CompareTag("Finish"))
+            {
+                EndCycle();
+            }
+        }
+
+        public void OnCollisionEnter(Collision collision)
+        {
+            if (collision.transform.CompareTag("Car"))
+            {
+                EndCycle();
+            }
+        }
+
+        public void EndCycle()
+        {
+            body.velocity = new Vector3(0, 0, 0);
+            environment.ResetEnvironment();
+        }
+    }
+}
+```
+
+Dit script is een simpelere versie van het player script. We gebruiken deze simpelere versie voor de VR speler, omdat het gebruike VR component een deel van het player script afhandeld. Dit is geen ML agent. Buiten dat is het script gelijk aan player.
+
+### Transform Extensions
+```C#
+using UnityEngine;
+
+namespace Assets.Scripts
+{
+    public static class TransformExtensions
+    {
+        /// <summary>
+        /// Get a transform from the any of the children based on the tag.
+        /// </summary>
+        public static Transform GetChildrenByTag(this Transform transform, string tag)
+        {
+            // Check if there are any children at all.
+            if (transform.childCount <= 0) return null;
+
+            // Loop through all children.
+            foreach (Transform x in transform)
+            {
+                // Compare the tag. If it's the right tag, return the child.
+                if (x.CompareTag(tag)) return x;
+
+                // Check if the child's children have the tag.
+                var find = x.GetChildrenByTag(tag);
+                if (find != null) return find;
+            }
+            return null;
+        }
+    }
+}
+```
+
+Deze klasse voegt een methode toe een transform, waarmee een object gevonden kan worden in een hoofd object op basis van de tag.
 
 ## Beschrijving gedragingen objecten
 ### Auto
@@ -220,9 +475,36 @@ tensorboard --logdir results
 
 In het volgende hoofdstuk zullen we meer uitbreiden over de resultaten die we hebben geobserveerd van onze training.
 ## Resultaten training
-In totaal hebben wijzelf de training op 3 verschillende machines laten draaien. Hieronder zullen we de resultaten tonen en hier een summiere uitleg bij geven.
+
+We hebben verschillende training rondes uitgevoerd, soms op verschillende machines. Hieronder zullen we de meest opvallende rondes tonen.
+~~In totaal hebben wijzelf de training op 3 verschillende machines laten draaien. Hieronder zullen we de resultaten tonen en hier een summiere uitleg bij geven.~~
 
 
+### Run 2
+
+![Resultaten](images/training/02.png)
+
+Eerste run met degelijk duratie. Vrij saaie grafiek, gestopt met training nadat we besloten hadden om veranderingen te doen in het reward en het spawn systeem.
+
+### Run 3
+
+![Resultaten](images/training/03.png)
+
+Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het geval te zijn omwille van ontbrekende raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
+
+### Run 4
+
+![Resultaten](images/training/04.png)
+
+-- TBD
+
+### Run 8
+
+![Resultaten](images/training/08.png)
+
+Opzich was dit een degelijke run voor de speler, maar er waren nog een aantal problemen. Het voornaamste probleem was het feit dat de speler gewoon overstak, zonder rekening te houden met het zebrapad, en ook niet rondkeek. De auto's wouden nooit remmen voor de speler, waardoor de resultaten ook niet goed zijn voor deze.
+
+### Run 9
 
 |           | Agent          |  Duur training    |
 | --------- | -------------- | ----------------- |
@@ -231,7 +513,8 @@ In totaal hebben wijzelf de training op 3 verschillende machines laten draaien. 
 | Grijs     | Player         |  13H 56M 21S      |
 
 
-![Anne Training](md_images/anneTraining.png)
+![Resultaten A](images/training/09a.png)
+![Resultaten B](images/training/09b.png)
 
 Bij deze trainingset hebben we opgemerkt dat de auto's zowel de `Good car` als `Bad car` veel te snel reden dan ze mochten rijden. Hierdoor is de curve van de auto reward redelijk eentonig aangezien de auto's altijd aan hetzelfde tempo naar de eindmeet reden.
 
@@ -242,6 +525,12 @@ Tijdens de training hebben we hier geobserveerd dat indien de `Player` dicht gen
 Indien de `Player` te ver spawned dan merken we op dat de speler cirkels begint te draaien. Momenteel is hier nog geen oplossing voor gevonden en zal de `Player` vaak niet over de eindmeet geraken.
 
 De dieptepunten die u op de grijze lijn kan zien is dus het moment dat hierboven besproken werd waar de `Player` rond zat te draaien.
+
+```kobe
+Omdat we toch nog problemen ondervonden, ook buiten de training, hebben we de speler redelijk hard aangepast en toch ook nog wat reward aanpassingen. Uiteindelijk is ook deze training niet echt een succes. Omdat de speler slecht leert, hebben de auto's ook niet veel om te leren.
+
+De speler heeft eigenlijk 2 paden. Oftewel ziet hij snel het eindpunt, en steekt hij direct over, zonder te kijken naar de auto's of het zebrapad. Enkel als hij feitelijk er naast staat zal hij dit gebruiken. Het andere pad is dat hij rondjes blijft draaien, vaak in een hoek van de map.
+```
 
 # Slotwoord
 ### Roadblocks
