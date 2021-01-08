@@ -23,15 +23,15 @@
 | Matthias Verschorren   | s103579  |
 
 ## Inleiding
-Voor het vak VR Experience kregen wij de opdracht om een applicatie te bedenken waarbij zowel Virtual Reality als ~~ML-Agents~~ (machine learning) een meerwaarde zal zijn.
+Voor het vak VR Experience kregen wij de opdracht om een applicatie te bedenken waarbij zowel Virtual Reality als machine learning een meerwaarde zal zijn.
 Hiervoor maken we gebruik van Unity.
 In dit document zal u een goede uitleg over het project krijgen, wat we hier allemaal in gedaan hebben en hoe alles in zijn werking gegaan is.
 
 ## Korte samenvatting
-Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kinderen zullen kunnen leren om veilig de straat over te steken.
+Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kinderen zullen leren om veilig de straat over te steken.
 Het is de bedoeling dat ze leren hoe ze veilig kunnen oversteken, zonder enig gevaar.
 
-Hier zullen de autos volledig door een getrainde AI worden bestuurd om zo echte bestuurders te simuleren.
+Hier zullen de auto's volledig door een getrainde AI worden bestuurd om zo echte bestuurders te simuleren.
 
 ## Installatie
 
@@ -47,6 +47,8 @@ Hier zullen de autos volledig door een getrainde AI worden bestuurd om zo echte 
 | Unity asset           | 1.0.0          | HQ Racing Car Model No.1203  |
 | Unity asset           | 23.1.0         | Oculus Integration  |
 
+Voor de Unity assets moet het volgende geïmporteerd worden:
+
 ![Unity asset character](images/installatie/character_pack.png)
 
 ![Unity asset car model](images/installatie/car_model.png)
@@ -55,8 +57,8 @@ Hier zullen de autos volledig door een getrainde AI worden bestuurd om zo echte 
 
 ## Verloop simulatie
 Wanneer de simulatie start zal de speler een random positie en random rotatie toegekend krijgen.
-Op dit moment zullen er ook auto's beginnen verschijnen die op de weg rijden.
-
+Op dit moment zullen er ook auto's beginnen verschijnen, die op de weg rijden.
+De auto's zullen in beide richtingen rijden.
 ## Observaties, acties en beloningen
 
 ### Beloning structuur
@@ -76,7 +78,7 @@ Voor onze beloningen hebben we verschillende tabellen aangezien we met meerde AI
 
 ![Scaling](images/objects/car/transform.png)
 
-Voor de autos werd een asset package gebruikt, om ons veel werk te besparen en toch een mooie auto te hebben. Om deze models op een goede grootte te krijgen, hebben we een schaal van 1.5 toegepast. We hebben gekozen voor een verschil in kleur om aan te duiden wat een goede en wat een slechte auto is, dit betekend dat we telkens de twee prefabs moeten aanpassen. Om aan te duiden dat dit effectief een auto is voegen we de Car tag toe.
+Voor de auto's werd een asset package gebruikt, om ons veel werk te besparen en toch een mooie auto te hebben. Om deze models op een goede grootte te krijgen, hebben we een schaal van 1.5 toegepast. We hebben gekozen voor een verschil in kleur om aan te duiden wat een goede en wat een slechte auto is, dit betekend dat we telkens de twee prefabs moeten aanpassen. Om aan te duiden dat dit effectief een auto is voegen we de Car tag toe.
 
 ![Collider](images/objects/car/collider.png)
 
@@ -86,21 +88,21 @@ In het originele object is de collider niet perfect hoe we hem willen, dus verwi
 
 ![Components](images/objects/car/settings.png)
 
-Om de training goed te kunnen laten verlopen moeten we de behaviour parameters goed instellen. De behaviour name hangt af van welk script je toevoegd. Beide autos hebben 4 observations en 1 action branch size met 3 mogelijke waarden. Omdat we nog niets hebben getrained kunnen we nog geen model toevoegen.
+Om de training goed te kunnen laten verlopen moeten we de behaviour parameters goed instellen. De behaviour name hangt af van welk script je toevoegt. Beide auto's hebben 4 observations en 1 action branch size met 3 mogelijke waarden. Omdat we nog niets hebben getrained kunnen we nog geen model toevoegen.
 
-Beide autos hebben een script nodig die de effectieve agent toevoegd. Voor de gele auto hebben we het GoodCar script, voor de blauwe hebben we het BadCar script. Deze twee scripts verschillen enkel in het reward systeem, voor de rest maken ze gebruik van dezelfde code.
+Beide auto's hebben een script nodig die de effectieve agent toevoegt. Voor de gele auto hebben we het GoodCar script, voor de blauwe hebben we het BadCar script. Deze twee scripts verschillen enkel in het reward systeem, voor de rest maken ze gebruik van dezelfde code.
 
-Om ervoor te zorgen dat de auto objecten effectief kan zien werd er een ray perception sensor toegevoegd. Het is belangrijk dat de sensor een aantal tags kan detecteren: player, car en crossing. Ook veranderen we het aantal rays, de ray breedte en de ray lengte. Ook willen we dat de sensor een beetje naar beneden kijkt, dus stellen we dit ook in. Om ervoor te zorgen dat we manueel de autos kunnen besturen voegen we een decision requester toe.
+Om ervoor te zorgen dat de auto objecten effectief kan zien werd er een ray perception sensor toegevoegd. Het is belangrijk dat de sensor een aantal tags kan detecteren: player, car en crossing. Ook veranderen we het aantal rays, de ray breedte en de ray lengte. Verder willen we dat de sensor een beetje naar beneden kijkt, dus stellen we dit ook in. Om ervoor te zorgen dat we manueel de auto's kunnen besturen voegen we een decision requester toe.
 
 ### Player
 
-Om problemen te vermijden tussen de machine learning en de efffectieve applicatie, hebben we 2 speler aparte objecten voorzien.
+Om problemen te vermijden tussen de machine learning en de efffectieve applicatie, hebben we twee aparte speler objecten voorzien.
 
 #### VR Player
 
 ![Tag](images/objects/vr-player/tag.png)
 
-In de `Asset/Oculus/VR/Prefabs` bevindt zich de `OVRPlayerController`, deze zullen we gebruiken als basis voor onze speler. Natuurlijk ook hier voegen we weer een tag toe, dit keer Player. Omdat onze applicatie een VR applicatie is, is een model hiervoor niet nodig.
+In de `Asset/Oculus/VR/Prefabs` bevindt zich de `OVRPlayerController`, deze zullen we gebruiken als basis voor onze speler. Natuurlijk voegen we ook hier weer een tag toe, dit keer Player. Omdat onze applicatie een VR applicatie is, is een model hiervoor niet nodig.
 
 ![Components](images/objects/vr-player/ovr_components.png)
 
@@ -108,7 +110,7 @@ In de componenten die de controller bevat veranderen we enkel de acceleratie zod
 
 ![Rigidbody](images/objects/vr-player/rigidbody.png)
 
-Zelf voegen we nog een rigidbody toe, om beweging toe te voegen. Hierbij zetten we gravity uit en zorgen ervoor dat alle X, Y en Z veranderingen uitstaan. Deze zorgen voor ongewenste bijwerkingen. Omdat we enkel x en z bewegingen hebben is dit geen probleem.
+Zelf voegen we nog een rigidbody toe om beweging toe te voegen. Hierbij zetten we gravity uit en zorgen ervoor dat alle X, Y en Z veranderingen uitstaan. Deze zorgen voor ongewenste bijwerkingen. Omdat we enkel x en z bewegingen hebben, is dit geen probleem.
 
 #### ML Player
 
@@ -116,7 +118,7 @@ Zelf voegen we nog een rigidbody toe, om beweging toe te voegen. Hierbij zetten 
 
 ![Rigidbody](images/objects/ml-player/rigidbody.png)
 
-Ons hoofd object geen zelf geen vorm, enkel componenten en de Player tag. We voegen een rigidbody toe, ook weer zonder gravity en zetten we de rotatie volledig uit. Voor de gewone beweging zetten we enkel de Y coordinaat uit, zodat we niet door muren kunnen gaan.
+Ons hoofdobject heeft zelf geen vorm. Het heeft enkel componenten en de Player tag. We voegen een rigidbody toe, ook weer zonder gravity en zetten we de rotatie volledig uit. Voor de gewone beweging zetten we enkel de Y coordinaat uit, zodat we niet door muren kunnen gaan.
 Ook voegen we een box collider toe, om ervoor te zorgen dat we aanrakingen kunnen detecteren.
 
 ![ML Behaviour](images/objects/ml-player/behaviour.png)
@@ -162,25 +164,292 @@ In deze foto kunnen we zien dat er een basisscene opgesteld is waarop we een ove
 ## Scripts
 ### Car
 ```csharp
+using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
+using UnityEngine;
+
+public abstract class Car : Agent
+{
+    public float maxSpeed = 50f;
+
+    internal Rigidbody body;
+    internal Environment environment;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        environment = GetComponentInParent<Environment>();
+        body = GetComponent<Rigidbody>();
+
+        InvokeRepeating(nameof(AddNotOnDestinationReward), 0, 1.0f);
+        InvokeRepeating(nameof(AddMovesTooFastReward), 0, 1.0f);
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        // Add current position as observation.
+        // 3 observations
+        sensor.AddObservation(transform.localPosition);
+
+        // Add current speed as observation.
+        // 1 observation
+        sensor.AddObservation(body.velocity.x);
+
+        // Total = 4 observations
+    }
+
+    public override void Heuristic(float[] actionsOut)
+    {
+        // Check for input.
+        if (Input.GetKey(KeyCode.UpArrow))
+            actionsOut[0] = 1f;
+        else if (Input.GetKey(KeyCode.DownArrow))
+            actionsOut[0] = -1f;
+        else
+            actionsOut[0] = 0f;
+
+    }
+
+    public override void OnActionReceived(float[] vectorAction)
+    {
+        // Apply movement.
+        if (vectorAction[0] == 1)
+            body.AddForce(transform.forward * maxSpeed, ForceMode.Acceleration);
+        else if (vectorAction[0] == -1)
+            body.AddForce(-0.8f * body.velocity);
+    }
+
+    public abstract void OnCollisionEnter(Collision other);
+
+    /// <summary>
+    /// Update environment variable based on the current parent.
+    /// </summary>
+    internal void UpdateEnvironment()
+    {
+        if (environment == null) environment = GetComponentInParent<Environment>();
+    }
+
+    /// <summary>
+    /// Reward logic for not being on location yet.
+    /// </summary>
+    internal abstract void AddNotOnDestinationReward();
+
+    /// <summary>
+    /// Reward logic for moving too fast.
+    /// </summary>
+    internal abstract void AddMovesTooFastReward();
+}
 ```
+
+Car is de superklasse voor GoodCar en BadCar omdat veel van de logica hetzelfde is voor beide klasses.
 
 ### Good car
 ```csharp
+using UnityEngine;
+
+public class GoodCar : Car
+{
+    public override void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerController"))
+        {
+            AddReward(-1f);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+        else if (other.gameObject.tag.Contains("Destination"))
+        {
+            AddReward(1f);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+        else if (other.gameObject.CompareTag("Car"))
+        {
+            AddReward(-0.8f);
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+    }
+
+    internal override void AddNotOnDestinationReward()
+    {
+        AddReward(-0.001f);
+    }
+
+    internal override void AddMovesTooFastReward()
+    {
+        UpdateEnvironment();
+
+        if (environment != null && body.velocity.x > environment.maxSpeed)
+        {
+            AddReward(-0.1f);
+        }
+    }
+}
 ```
 
 ### Bad car
 ```csharp
+using UnityEngine;
+
+public class BadCar : Car
+{
+    public override void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerController"))
+        {
+            AddReward(-0.5f);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+        else if (other.gameObject.tag.Contains("Destination"))
+        {
+            AddReward(1f);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+        else if (other.gameObject.CompareTag("Car"))
+        {
+            AddReward(-0.8f);
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+            EndEpisode();
+        }
+    }
+
+    internal override void AddNotOnDestinationReward()
+    {
+        AddReward(-0.002f);
+    }
+
+    internal override void AddMovesTooFastReward()
+    {
+        UpdateEnvironment();
+
+        if (environment != null && body.velocity.x > (environment.maxSpeed + 10))
+        {
+            AddReward(-0.1f);
+        }
+    }
+}
 ```
 
 ### Environment
 ```csharp
+using Assets.Scripts;
+using TMPro;
+using Unity.MLAgents;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+public class Environment : MonoBehaviour
+{
+    private const float SPAWN_RANGE_X = 45;
+    private const float SPAWN_RANGE_Z = 6;
+
+    public int spawnX = 0;
+    public int spawnY = 0;
+    public int maxSpeed = 30;
+    public GameObject goodCar;
+    public GameObject badCar;
+    public GameObject scoreboard;
+    public GameObject finish;
+
+    private GameObject player;
+    private TextMeshPro _scoreboard;
+    private Vector3 initialPlayerPosition;
+
+    internal GameObject cars;
+
+    public void OnEnable()
+    {
+        player = transform.GetChildrenByTag("Player").gameObject;
+        cars = transform.Find("Cars").gameObject;
+
+        if (scoreboard != null) _scoreboard = scoreboard.GetComponent<TextMeshPro>();
+        initialPlayerPosition = player.transform.localPosition;
+
+    }
+
+    private void FixedUpdate()
+    {
+        var agent = player.GetComponent<Agent>();
+        if (_scoreboard != null && agent != null) _scoreboard.text = agent.GetCumulativeReward().ToString("f3");
+    }
+
+
+    /* Source:
+     * - https://github.com/ddhaese/Project_ML-Agents_02/blob/master/Assets/Scripts/Environment.cs
+     * - lines 31 to 37
+     */
+    /// <summary>
+    /// Get a random position for the player spawning.
+    /// Spawning on the crossing has a 1 in 3 chance.
+    /// </summary>
+    private Vector3 GetRandomPosition()
+    {
+        int randomNumber = Random.Range(0, 3);
+
+        if (randomNumber == 0) // Spawn on crossing.
+        {
+            float z = Random.Range(initialPlayerPosition.z, SPAWN_RANGE_Z);
+
+            return new Vector3(initialPlayerPosition.x, spawnY, z);
+        }
+
+        float x = Random.Range(-SPAWN_RANGE_X, SPAWN_RANGE_X);
+
+        return new Vector3(x, spawnY, initialPlayerPosition.z);
+    }
+
+    /* Source:
+     * - https://github.com/ddhaese/Project_ML-Agents_02/blob/master/Assets/Scripts/Environment.cs
+     * - line 77
+     */
+    /// <summary>
+    /// Get a random rotation for the player.
+    /// </summary>
+    private Quaternion GetRandomRotation()
+    {
+        // bron: https://github.com/ddhaese/Project_ML-Agents_02/blob/master/Assets/Scripts/Environment.cs, lijn 77
+        return Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+    }
+
+    /// <summary>
+    /// Resets the current environment to the initial state.
+    /// 
+    /// Removes all existing calls. Resets player location and rotation.
+    /// </summary>
+    public void ResetEnvironment()
+    {
+        // Loop over all existing cars.
+        foreach (Transform car in cars.transform)
+        {
+            // Destroy the car.
+            GameObject.Destroy(car.gameObject);
+        }
+
+        // Reset the player's location.
+        player.transform.localPosition = GetRandomPosition();
+        // Reset the player's rotation.
+        player.transform.localRotation = GetRandomRotation();
+    }
+}
 ```
+
+ 
 
 ### Spawnpoint
 ```csharp
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public enum RoadSide
+{
+    Right,
+    Left
+}
 public class SpawnPoint : MonoBehaviour
 {
     private const float MIN_TIME_START = 0f;
@@ -226,9 +495,9 @@ public class SpawnPoint : MonoBehaviour
 }
 ```
 
-Om ervoor te zorgen dat de autos blijven spawnen, gebruiken we dit script. Dit script gebruikt een 'self-invoking' method, dit betekend dat eenmaal deze methode is aangeroepen, deze aangeroepen zal blijven worden.
+Om ervoor te zorgen dat de auto's blijven spawnen, gebruiken we dit script. Dit script gebruikt een 'self-invoking' method, dit betekend dat eenmaal deze methode is aangeroepen, deze aangeroepen zal blijven worden.
 
-Aangezien autos langs beide kanten kunnen komen, is er een parameter om de juiste richting aan te duiden.
+Vanboven in dit script is er een enum "RoadSide". Dit gebruiken we om de auto's in de juiste richting te zetten.
 
 ### Player
 ```csharp
@@ -477,7 +746,7 @@ In het volgende hoofdstuk zullen we meer uitbreiden over de resultaten die we he
 ## Resultaten training
 
 We hebben verschillende training rondes uitgevoerd, soms op verschillende machines. Hieronder zullen we de meest opvallende rondes tonen.
-~~In totaal hebben wijzelf de training op 3 verschillende machines laten draaien. Hieronder zullen we de resultaten tonen en hier een summiere uitleg bij geven.~~
+
 
 
 ### Run 2
@@ -539,5 +808,10 @@ Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wann
 
 Alsook hebben we een roadblock gehad dat de speler door het toevoegen van gravity begon te vliegen in de lucht tegenstrijdig met het toevoegen van gravity natuurlijk, na het verwijderen van gravity was dit opgelost.
 
+
+# Bronnen
+github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
+
+BrinkHouseGames. (2013, Augustus 6). forum.unity.com. Opgehaald van InvokeRepeating Random Interval: https://forum.unity.com/threads/invokerepeating-random-interval.105107/
 
 [Back to top](#Oversteek-simulator)
