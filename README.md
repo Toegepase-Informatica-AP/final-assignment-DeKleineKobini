@@ -39,6 +39,7 @@
     - [Run 9](#run-9)
 - [Slotwoord](#slotwoord)
     - [Roadblocks](#roadblocks)
+    - [Conclusie](#Conclusie)
 - [Bronnen](#bronnen)
 
 ## Groepsleden
@@ -651,7 +652,7 @@ public class Player : Agent
 }
 ```
 
-Het player script verzorgt een groot deel van de applicatie. Buiten dat hier het reward systeem, en de eigenlijke agent in zitten, zorgt dit script ook dat op het einde van een sessie, alles gereset wordt. Ook zit hier de beweging in voor de speler.
+Het player script verzorgt een groot deel van de applicatie. Buiten dat hier het reward systeem en de eigenlijke agent in zitten, zorgt dit script er ook voor dat op het einde van een sessie alles gereset wordt. Ook zit hier de beweging in voor de speler.
 
 Om aanpassingen makkelijker uit te voeren, is de bewegings- en rotatiesnelheid beschikbaar als parameter.
 
@@ -715,7 +716,7 @@ namespace Assets.Scripts
 }
 ```
 
-Dit script is een simpelere versie van het player script. We gebruiken deze simpelere versie voor de VR speler, omdat het gebruike VR component een deel van het player script afhandeld. Dit is geen ML agent. Buiten dat is het script gelijk aan player.
+Dit script is een simpelere versie van het player script. We gebruiken deze simpelere versie voor de VR speler, omdat de gebruikte VR component een deel van het player script afhandeld. Dit is geen ML agent. Verder is het script gelijk aan player.
 
 ### Transform Extensions
 ```C#
@@ -749,7 +750,7 @@ namespace Assets.Scripts
 }
 ```
 
-Deze klasse voegt een methode toe een transform, waarmee een object gevonden kan worden in een hoofd object op basis van de tag.
+Deze klasse voegt een transformmethode toe, waarmee een object gevonden kan worden in een hoofd object op basis van de tag van dat object.
 
 ## Beschrijving gedragingen objecten
 ### Auto
@@ -847,7 +848,15 @@ Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wann
 
 Alsook hebben we een roadblock gehad dat de speler door het toevoegen van gravity begon te vliegen in de lucht tegenstrijdig met het toevoegen van gravity natuurlijk, na het verwijderen van gravity was dit opgelost.
 
+Indien we een project van deze schaal in de toekomst zullen maken zullen we zeker moeten opletten dat we eerder beginnen trainen om zo fouten te herkennen die we mogelijks kunnen tegenkomen. 
 
+### Conclusie
+
+Voor dit project hebben we getracht een simulator te maken die het echte leven zo goed mogelijk nabootst.
+
+Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten van de trainingen zijn en dat we toch zeer veel aanpassingen nog zouden kunnen doen om zo een beter resultaat te bekomen.
+
+We hebben opgemerkt dat dit type project veel meer tijd zou kosten dan we eigenlijk hadden. De trainingen die de players en de cars moeten doorgaan zijn lange trainingen, koppel dit met onze weinige ervaring met ml agents en unity dan word dit allemaal veel moeilijker.
 
 
 
