@@ -920,7 +920,7 @@ Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wann
 
 Alsook hebben we een roadblock gehad dat de speler, door het toevoegen van gravity, begon te vliegen in de lucht. Natuurlijk tegenstrijdig met het toevoegen van gravity, maar na het verwijderen van gravity was dit opgelost.
 
-Indien we een project van deze schaal in de toekomst zullen maken zullen we zeker moeten opletten dat we eerder beginnen trainen om zo fouten te herkennen die we mogelijks kunnen tegenkomen.
+Indien we een project van deze schaal in de toekomst zullen maken, zullen we zeker moeten opletten dat we eerder beginnen trainen om zo eventuele fouten eerder te herkennen.
 
 ## Slotwoord
 
