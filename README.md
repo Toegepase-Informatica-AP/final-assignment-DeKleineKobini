@@ -31,6 +31,12 @@
     - [Auto](#auto-1)
     - [Player](#player-2)
   - [Verloop van de training](#verloop-van-de-training)
+  - [One-pager](#one-pager)
+    - [Spelverloop](#spelverloop)
+    - [Meerwaarde](#meerwaarde)
+    - [Interactie](#interactie)
+    - [Kwadrant](#kwadrant)
+  - [Veranderingen ten opzichte van de one-pager](#veranderingen-ten-opzichte-van-de-one-pager)
   - [Resultaten training](#resultaten-training)
     - [Run 2](#run-2)
     - [Run 3](#run-3)
@@ -39,7 +45,7 @@
     - [Run 9](#run-9)
 - [Slotwoord](#slotwoord)
     - [Roadblocks](#roadblocks)
-    - [Conclusie](#Conclusie)
+    - [Conclusie](#conclusie)
 - [Bronnen](#bronnen)
 
 ## Groepsleden
@@ -55,6 +61,8 @@
 Voor het vak VR Experience kregen wij de opdracht om een applicatie te bedenken waarbij zowel Virtual Reality als machine learning een meerwaarde zal zijn.
 Hiervoor maken we gebruik van Unity.
 In dit document zal u een goede uitleg over het project krijgen, wat we hier allemaal in gedaan hebben en hoe alles in zijn werking gegaan is.
+
+Alle code is ook te vinden op de [Github Repository](https://github.com/Toegepase-Informatica-AP/final-assignment-oversteek-simulator).
 
 ## Korte samenvatting
 Voor dit project hebben wij geopteerd om een VR omgeving te maken waarin kinderen zullen leren om veilig de straat over te steken.
@@ -490,6 +498,7 @@ public enum RoadSide
     Right,
     Left
 }
+
 public class SpawnPoint : MonoBehaviour
 {
     private const float MIN_TIME_START = 0f;
@@ -506,6 +515,7 @@ public class SpawnPoint : MonoBehaviour
         environment = GetComponentInParent<Environment>();
 
         var randomTime = Random.Range(MIN_TIME_START, MAX_TIME_START);
+        // Source: https://forum.unity.com/threads/invokerepeating-random-interval.105107/ : BrinkHouseGames
         Invoke(nameof(Spawn), randomTime);
     }
 
@@ -785,6 +795,38 @@ tensorboard --logdir results
 
 In het volgende hoofdstuk zal meer uitleg volgen over de resultaten van onze trainingen en observaties.
 
+## One-pager
+
+Voor we aan dit project begonnen hebben we een one-pager opgesteld. Deze informatie kan je hieronder bekijken:
+
+### Spelverloop
+
+Auto’s rijden over de weg. De bedoeling is dat de speler veilig de straat oversteekt. Als de auto’s de speler op tijd zien zullen ze beginnen remmen. Indien de auto’s niet op tijd kunnen stoppen en de speler aanrijden, is het game over.
+
+### Meerwaarde
+
+De auto’s een brein geven, heeft volgens ons een meerwaarde omdat we willen dat de auto’s de werkelijkheid nabootsen. In het echte leven zal niet elke chauffeur even oplettend zijn, dus door de keuzes van een auto te laten afhangen van een observatie zullen we dit nabootsen. We hebben dus hiervoor gekozen om te zorgen dat de kinderen leren in een omgevingen die zo veel mogelijk de werkelijkheid nabootst. Zonder deze extra intelligentie zou er weinig te leren zijn omdat er dan minder realisme aanwezig is.
+
+Als type AI-agent dachten we om een *Simultaneous Single-Agent* te gebruiken, omdat we willen dat er meerdere auto’s kunnen rijden.
+
+### Interactie
+
+- Auto (agent) kan de speler niet zien en botst tegen de speler.
+- Auto (agent) ziet de speler te laat, dus kan niet op tijd stoppen en botst tegen de speler.
+- Auto (agent) kan speler zien als de speler dicht genoeg tegen de straat staat.
+
+### Kwadrant
+
+![Kwadrant One-pager](images/kwadrant.png)
+
+## Veranderingen ten opzichte van de one-pager
+
+Doorheen ons project zijn er een aantal plannen veranderd:
+
+- De speler is ook een AI-component geworden. Dit hebben we gedaan om zo een realistischere speler te simuleren.
+- De auto kan ook andere auto's zien.
+- Het type AI-agent is veranderd van *Simultaneous Single-Agent* naar een *Ecosystem*.
+
 ## Resultaten training
 
 We hebben verschillende training rondes uitgevoerd, soms op verschillende machines. Hieronder zullen we de meest opvallende rondes tonen.
@@ -793,13 +835,19 @@ We hebben verschillende training rondes uitgevoerd, soms op verschillende machin
 
 ![Resultaten](images/training/02.png)
 
-Eerste run met degelijk duratie. Vrij saaie grafiek. We zijn gestopt met training nadat we besloten hadden om veranderingen te doen in het reward- en het spawn systeem.
+Beide autos bereiken vrij snel een vlakte. GoodCar heeft nog wel een redelijk dip, maar bereikt snel terug de vlakte.
+
+We zijn gestopt met deze training nadat we besloten hadden om veranderingen te doen in het reward- en het spawn systeem.
 
 ### Run 3
 
+Na de tweede ronde hebben we de configuratie aangepast van `Oversteek-01.yml` naar `Oversteek-02.yml`. Vanaf deze ronde werden punten afgenomen voor rond te draaien en kon de speler ook op het zebrapad spawnen.
+
 ![Resultaten](images/training/03.png)
 
-Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het geval te zijn omwille van ontbrekende raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
+De resultaten van de speler fluctueren enorm, maar de vlakkere delen hebben wel een duidelijk hogere score uiteindelijk. Beide autos hebben een gelijkwaardige grafiek, waarbij beiden vrij snel stabiel zijn.
+
+We zijn deze training gestopt omdat we een fout hadden ontdekt, er ontbraken heel wat raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
 
 ### Run 4
 
@@ -858,9 +906,8 @@ Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten
 
 We hebben opgemerkt dat dit type project veel meer tijd zou kosten dan we eigenlijk hadden. De trainingen die de players en de cars moeten doorgaan zijn lange trainingen, koppel dit met onze weinige ervaring met ml agents en unity dan word dit allemaal veel moeilijker.
 
-
-
 # Bronnen
+
 github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
 
 BrinkHouseGames. (2013, Augustus 6). forum.unity.com. Opgehaald van InvokeRepeating Random Interval: https://forum.unity.com/threads/invokerepeating-random-interval.105107/

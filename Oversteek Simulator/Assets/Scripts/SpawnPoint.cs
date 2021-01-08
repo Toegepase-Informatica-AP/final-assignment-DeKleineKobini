@@ -23,6 +23,7 @@ public class SpawnPoint : MonoBehaviour
         environment = GetComponentInParent<Environment>();
 
         var randomTime = Random.Range(MIN_TIME_START, MAX_TIME_START);
+        // Source: https://forum.unity.com/threads/invokerepeating-random-interval.105107/ : BrinkHouseGames
         Invoke(nameof(Spawn), randomTime);
     }
 
