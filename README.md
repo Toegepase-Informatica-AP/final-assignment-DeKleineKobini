@@ -796,6 +796,7 @@ Eerste run met degelijk duratie. Vrij saaie grafiek, gestopt met training nadat 
 
 ### Run 3
 
+![Resultaten](images/training/03.png)
 
 Deze run leek alsof de rewards random waren. Bleek dit later ook ongeveer het geval te zijn omwille van ontbrekende raytracing tags. Ook merkten we dat de rotatie snelheid te hoog stond.
 
