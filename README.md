@@ -1,17 +1,45 @@
 # Oversteek simulator
 ## Table of contents
-1. [Inleiding](#Inleiding)
-2. [Groepsleden](#Groepsleden)
-3. [Korte samenvatting](#Korte-samenvatting)
-4. [Installatie](#Installatie)
-5. [Verloop simulatie](#Verloop-simulatie)
-6. [Observaties, acties en beloningen](#Observaties-acties-en-beloningen)
-7. [Beschrijving objecten](#beschrijving-objecten)
-8. [Scripts](#Scripts)
-9. [Beschrijving gedragingen objecten](#beschrijving-gedragingen-objecten)
-10. [Verloop van de training](#verloop-van-de-training)
-11. [Resultaten training](#resultaten-training)
-11. [Roadblocks](#Roadblocks)
+- [Oversteek simulator](#oversteek-simulator)
+  - [Table of contents](#table-of-contents)
+  - [Groepsleden](#groepsleden)
+  - [Inleiding](#inleiding)
+  - [Korte samenvatting](#korte-samenvatting)
+  - [Installatie](#installatie)
+  - [Verloop simulatie](#verloop-simulatie)
+  - [Observaties, acties en beloningen](#observaties-acties-en-beloningen)
+    - [Beloning structuur](#beloning-structuur)
+  - [Beschrijving objecten](#beschrijving-objecten)
+    - [Auto](#auto)
+    - [Spawn Left & Spawn Right](#spawn-left--spawn-right)
+    - [Player](#player)
+      - [VR Player](#vr-player)
+      - [ML Player](#ml-player)
+    - [Zebrapad](#zebrapad)
+    - [Finish](#finish)
+    - [Scene](#scene)
+  - [Scripts](#scripts)
+    - [Car](#car)
+    - [Good car](#good-car)
+    - [Bad car](#bad-car)
+    - [Environment](#environment)
+    - [Spawnpoint](#spawnpoint)
+    - [Player](#player-1)
+    - [Simple Player](#simple-player)
+    - [Transform Extensions](#transform-extensions)
+  - [Beschrijving gedragingen objecten](#beschrijving-gedragingen-objecten)
+    - [Auto](#auto-1)
+    - [Player](#player-2)
+  - [Verloop van de training](#verloop-van-de-training)
+  - [Resultaten training](#resultaten-training)
+    - [Run 2](#run-2)
+    - [Run 3](#run-3)
+    - [Run 4](#run-4)
+    - [Run 8](#run-8)
+    - [Run 9](#run-9)
+- [Slotwoord](#slotwoord)
+    - [Roadblocks](#roadblocks)
+- [Bronnen](#bronnen)
 
 ## Groepsleden
 | Naam                   | S-nummer |
@@ -732,10 +760,33 @@ Zo zal de speler kunnen leren omgaan met auto's die zoals in een echte verkeerss
 
 Indien we trainen met de auto zullen we de Player agent (Hieronder vermeld) ook nodig hebben aangezien ze in samenhang zullen trainen om zo de auto's te leren stoppen indien ze een speler detecteren.
 
+### Player
+Indien de auto agents training nodig hebben zal u een player object in de scene kunnen steken die ervoor zorgt dat er een speler met een agent zal beginnen rondwandelen en trachten op zoek te gaan naar het oversteekpunt. Hier moet getracht worden eerst de player te trainen om efficient opzoek te gaan naar het oversteekpunt.
+
+## Verloop van de training
+Om de auto's op een goede manier te trainen hoe het verkeer in het echt zou lopen hebben we geopteerd om de speler ook een agent toe te kennnen tijdens de training.
+Dit zal ervoor zorgen dat wanneer we de training starten de auto's zullen leren om te gaan met een onvoorspelbare speler.
+
+Om de training te starten kan u in de projectmap een python of anaconda terminal opendoen en daarin zal u de volgende commands moeten invoeren.
+
+Indien u anaconda gebruikt zal u eerst de omgeving moeten aanzetten. Dit kan u doen door het commando:
+```
+conda activate <Naam ML agents environment>
+```
+Daarna kan u de training starten met het commando:
+```
+mlagents-learn YAML --run-id <Naam>
+```
+Indien u de resultaten van de training wilt bekijken al dan niet live kan u in een nieuwe terminal dit commando uitvoeren:
+```
+tensorboard --logdir results
+```
+
+In het volgende hoofdstuk zullen we meer uitbreiden over de resultaten die we hebben geobserveerd van onze training.
+
+## Resultaten training
 
 We hebben verschillende training rondes uitgevoerd, soms op verschillende machines. Hieronder zullen we de meest opvallende rondes tonen.
-
-
 
 ### Run 2
 
@@ -803,5 +854,7 @@ Alsook hebben we een roadblock gehad dat de speler door het toevoegen van gravit
 github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
 
 BrinkHouseGames. (2013, Augustus 6). forum.unity.com. Opgehaald van InvokeRepeating Random Interval: https://forum.unity.com/threads/invokerepeating-random-interval.105107/
+
+Supercyan. (2020, September 29). assetstore.unity.com. Opgehaald van Character Pack: Free Sample: https://assetstore.unity.com/packages/3d/characters/humanoids/character-pack-free-sample-79870/
 
 [Back to top](#Oversteek-simulator)
