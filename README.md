@@ -43,10 +43,10 @@
     - [Run 4](#run-4)
     - [Run 8](#run-8)
     - [Run 9](#run-9)
-- [Slotwoord](#slotwoord)
+  - [Slotwoord](#slotwoord)
     - [Roadblocks](#roadblocks)
     - [Conclusie](#conclusie)
-- [Bronnen](#bronnen)
+  - [Bronnen](#bronnen)
 
 ## Groepsleden
 | Naam                   | S-nummer |
@@ -894,7 +894,7 @@ Enkele van deze roadblocks zijn het dubbel tellen van de collisions waarbij wann
 
 Alsook hebben we een roadblock gehad dat de speler, door het toevoegen van gravity, begon te vliegen in de lucht. Natuurlijk tegenstrijdig met het toevoegen van gravity, maar na het verwijderen van gravity was dit opgelost.
 
-Indien we een project van deze schaal in de toekomst zullen maken, zullen we zeker moeten opletten dat we eerder beginnen trainen om zo vroeger de fouten te herkennen die we mogelijks kunnen tegenkomen. 
+Indien we een project van deze schaal in de toekomst zullen maken zullen we zeker moeten opletten dat we eerder beginnen trainen om zo fouten te herkennen die we mogelijks kunnen tegenkomen.
 
 # Slotwoord
 ### Conclusie
@@ -903,9 +903,9 @@ Voor dit project hebben we getracht een simulator te maken die het echte leven z
 
 Bij de resultaten konden we observeren dat er hier veel verschillende uitkomsten van de trainingen zijn en dat we toch zeer veel aanpassingen nog zouden kunnen doen om zo een beter resultaat te bekomen.
 
-We hebben opgemerkt dat dit type project veel meer tijd zou kosten dan we eigenlijk hadden. De trainingen die de players en de cars moeten doorgaan zijn lange trainingen, koppel dit met onze weinige ervaring met ml agents en unity dan word dit allemaal veel moeilijker.
+De resultaten waren niet helemaal wat we gehoopt hadden. De auto's stoppen niet voor de speler en de speler gaat soms redelijk goed naar de finish, maar blijft andere keren in rondjes draaien. Het zou kunnen dat de auto's niet leren stoppen voor de speler omdat de speler er lang over doet om te leren over te steken. Hierdoor kan het zijn dat de auto's niet genoeg in aanraking komen met de speler om hieruit te leren. Een mogelijke oplossing hiervoor is om eerst de speler al een deel te trainen, en dan pas de auto's mee trainen. Of om ervoor te zorgen dat de speler sneller het juiste begint te doen door de beloningen aan te passen.
 
-# Bronnen
+## Bronnen
 
 github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Create-New.md
 
