@@ -804,4 +804,6 @@ github.com. (2020, December 11). Opgehaald van Unity-Technologies: https://githu
 
 BrinkHouseGames. (2013, Augustus 6). forum.unity.com. Opgehaald van InvokeRepeating Random Interval: https://forum.unity.com/threads/invokerepeating-random-interval.105107/
 
+Supercyan. (2020, September 29). assetstore.unity.com. Opgehaald van Character Pack: Free Sample: https://assetstore.unity.com/packages/3d/characters/humanoids/character-pack-free-sample-79870/
+
 [Back to top](#Oversteek-simulator)
