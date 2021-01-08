@@ -94,6 +94,8 @@ Beide auto's hebben een script nodig die de effectieve agent toevoegt. Voor de g
 
 Om ervoor te zorgen dat de auto objecten effectief kan zien werd er een ray perception sensor toegevoegd. Het is belangrijk dat de sensor een aantal tags kan detecteren: player, car en crossing. Ook veranderen we het aantal rays, de ray breedte en de ray lengte. Verder willen we dat de sensor een beetje naar beneden kijkt, dus stellen we dit ook in. Om ervoor te zorgen dat we manueel de auto's kunnen besturen voegen we een decision requester toe.
 
+
+
 ### Player
 
 Om problemen te vermijden tussen de machine learning en de efffectieve applicatie, hebben we twee aparte speler objecten voorzien.
@@ -241,7 +243,7 @@ public abstract class Car : Agent
 }
 ```
 
-Car is de superklasse voor GoodCar en BadCar omdat veel van de logica hetzelfde is voor beide klasses.
+Car is de superklasse voor GoodCar en BadCar omdat veel van de logica hetzelfde is voor beide klasses. Car erft over van "Agent" omdat dit een AI-component is.
 
 ### Good car
 ```csharp
@@ -442,7 +444,7 @@ public class Environment : MonoBehaviour
 }
 ```
 
-
+Environment is een beetje het "overzicht".
 
 ### Spawnpoint
 ```csharp
@@ -620,6 +622,8 @@ Het player script verzorgt een groot deel van de applicatie. Buiten dat hier het
 
 Om aanpassingen makkelijker uit te voeren, is de bewegings- en rotatiesnelheid beschikbaar als parameter.
 
+Player erft over van "Agent" omdat dit een AI-component is.
+
 ### Simple Player
 ```csharp
 using UnityEngine;
@@ -728,7 +732,7 @@ Indien we trainen met de auto zullen we de Player agent (Hieronder vermeld) ook 
 In de scene moeten ook zeker empty gameobjects toegevoegd worden genaamd: SpawnLeft en SpawnRight. 
 
 Dit zijn de locaties waar de auto's zullen spawnen en deze moeten zeker aan de jui
-ten van de scene geplaatst worden. ### Player
+### Player
 Indien de auto agents training nodig hebben zal u een player object in de scene kunnen steken die ervoor zorgt dat er een speler met een agent zal beginnen rondwandelen en trachten op zoek te gaan naar het oversteekpunt. Hier moet getracht worden eerst de player te trainen om efficient opzoek te gaan naar het oversteekpunt.
 
 ## Verloop van de training
